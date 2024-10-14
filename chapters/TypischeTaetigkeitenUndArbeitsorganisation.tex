@@ -1,0 +1,85 @@
+\selectlanguage{ngerman}
+
+\subsection{Tools}
+\subsubsection{Jira}
+Als Organisationstool für Tickets benutzten wir \href{https://www.atlassian.com/software/jira}{Jira}. Es erlaubt uns Einen eigenen
+'Lebenszyklus' für die Tickets zu erstellen, welche diese durchlaufen müssen. Das hilft dabei unsere Prozesse auch so umzusetzen wie
+es mit dem Team abgemacht war. Es ist aber nicht nur ein Tool zur Ticket-Verwaltung, denn es hat auch einige SCRUM-Tool Features wie
+das Backlog (s. Abbildung \ref{quivia_backlog}), in dem alle Tickets die in den nächsten Sprints umgesetzt werden sollen priorisiert
+aufgelistet werden.
+\par
+Auch das Sprint-Board (s. Abbildung \ref{quivia_sprint_board}) von Team Quivia ist in Jira zu finden. Dieses wurde von uns benutzt, um
+den Status unserer Aufgaben übersichtlich anzuzeigen. Dieses Board ist vollständig von unserer Scrum Master konfiguriert worden.
+Nach einigen Wochen hat sich das Team auf die Folgenden Zustände auf dem Scrum-Board:
+\begin{xltabular}{\linewidth}{l|X}
+    Spaltenname & Beschreibung \\
+    \hline
+    TO DO & Hier befinden sich alle Stories, die in einem Sprint aufgenommen werden und innerhalb des Sprints bearbeitet werden
+    müssen. \\
+    \hline
+    \endfirsthead
+    IN PROGRESS & Sobald der Entwickler mit der Bearbeitung einer Story beginnt, kommt diese in die Spalte In Progress.
+    Die Story bleibt in dieser Spalte, solange der Entwickler daran arbeitet. Im Idealfall sollte jeder Entwickler
+    immer nur an einer Story aktiv arbeiten, weshalb sich hier nur eine Story des jeweiligen Entwicklers befinden sollte. \\
+    \hline
+    IN REVIEW & Ist der Entwickler mit der Bearbeitung der Story fertig und hat alle Akzeptanzkriterien umgesetzt, befindet
+    sich die Story in der Spalte ''In Review''. Sobald die Story sich in dieser Spalte befindet, wird der zuständige Betreuer
+    darüber in Kenntnis gesetzt, dass der Betreuer diese überprüfen kann. Am besten erfolgt dies über die Kommentar-Funktion im 
+    Jira Ticket, mit einer zusätzlichen Zuweisung der Story an den entsprechenden
+    Betreuer. Das Review des Betreuers erfolgreich war, geht die Story in die Spalte Sprint Review über.
+    Andernfalls muss die Story überarbeitet werden und erneut in den Status To Do übergehen. \\
+    \hline
+    SPRINT REVIEW & Hier befinden sich alle Stories, die fertig bearbeitet und vom Betreuer abgenommen wurden. Diese Stories
+    werden im Sprint Review dem Product Owner und den Stakeholdern vorgestellt und das Ergebnis anhand der geforderten ACs präsentiert.  \\
+    \hline
+    DONE & Hier befinden sich alle Stories, die vom PO während dem Sprint Review abgenommen wurden, diese Stories gelten somit
+    als erledigt. Wenn der PO nach dem Sprint Review noch Änderungen zu der Story aufnehmen möchte, wird
+    dazu ein extra Bug-Ticket erstellt oder eine neue Story im Backlog angelegt.  \\
+    \hline
+\end{xltabular}
+
+\par
+Im Projekt Quivia haben wir AGIL mit SCRUM gearbeitet, wobei ein essenzieller Teil von SCRUM die Erstellung von Tickets ist.
+Jira, als Ticket-Verwaltungstool bietet uns die Möglichkeit unsere Tickets in verschiedene Arten von Ticket zu Gruppieren, z.B.
+EPICs, welche größere Features darstellen, die über untergeordnete User-Stories (s. Abbildung \ref{quivia_user_story}) neue Features beschreiben, oder User-Stories,
+welche eine kleinere Funktionalität genau beschreiben und eine Liste mit Akzeptanzkriterien beinhaltet, die ein Entwickler nach und
+nach beim Implementieren abhaken soll.
+
+\subsubsection{Confluence}
+In der modernen Software-Entwicklung ist die Wichtigkeit von guter Dokumentation allgemein bekannt. Bei doubleSlash wird \href{https://www.atlassian.com/software/confluence}{Confluence}
+benutzt für die Dokumentation technischer und nicht-technischer Prozesse, Projekte sowie unternehmensrelevanter Informationen, um eine strukturierte und
+kollaborative Plattform für das Teilen von Wissen und die Zusammenarbeit im gesamten Team zu gewährleisten. Confluence (s. Abbildung \ref{quivia_confluence}) hat
+Integrationsmöglichkeiten mit Jira, Trello, Miro und Figma, Tools, welche entlang des
+Softwareentwicklungsprozesses benutzt werden können, um Informationen aufzubereiten. Confluence bietet durch einen Klartext-Orientierten Editor die Möglichkeit,
+Informationen mit wenig Aufwand gut strukturiert und organisiert zu präsentieren.
+
+\subsubsection{Insomnia}
+Um Quivia's Backend zu Testen ohne das Frontend mitziehen zu müssen benutzen wir \href{https://insomnia.rest/}{Insomnia}. Insomnia ist eine
+Open-Source Alternative zu \href{https://www.postman.com/}{Postman}. Insomnia und Postman sind API-Testing- und Design-Plattformen,
+die es Entwicklern ermöglichen, HTTP- und RESTful-APIs zu entwerfen, zu testen und zu debuggen. Mit Insomnia können Entwickler
+HTTP-Anfragen erstellen, die Ergebnisse anzeigen und die Interaktion mit APIs verwalten. Wir haben uns bei Quivia für Insomnia
+entschieden, da Postman in Unternehmen kostenpflichtig ist und in den neusten Versionen nicht mehr möglich ist nur lokal zu arbeiten, denn
+dort sollen alle API Informationen nur in der Clouds gespeichert werden, was für manche Kundenprojekte problematisch ist, denn es
+gibt APIs die besonderen Schutz benötigen.
+
+\subsubsection{Obsidian.md}
+Oftmals kommt es in der Software-Entwicklung vor, dass man auf eine Code-Stelle stößt, die man später nochmal verbessern sollte. 
+Um diese nicht aus den Augen zu verlieren, ist ein Notizprogramm hilfreich. \href{https://obsidian.md/}{Obsidian.md} ist ein Markdown Notizprogramm. 
+Es kann außerdem mit zahlreichen Plugins erweitert werden um die benötigten Funktionen abzudecken. Es gibt zum Beispiel ein Plugin, 
+das es ermöglicht alle Notizen und Anhänge über das Versionskontrollsystem Git zu verwalten.
+
+\subsection{Frameworks}
+\subsubsection{Flask: CPO Data Portal}
+Für das CPO Data Portal, welches später in Kapitel \ref{cpo_data_portal} noch einmal genauer erklärt wird, benutzen wir Python \cite{Python}, mit dem Flask-Framework \cite{Flask}.
+Das Flask-Framework ermöglicht Entwicklern mit wenig Aufwand eine Web-Applikation zu erstellen. Es wird oft auch als Microframework bezeichnet, da 
+es sich nicht auf bestimmte Libraries oder Tools festlegt, und nur einen minimalistischen Webserver mitliefert. Das bedeutet, dass ein Entwickler
+sich selbst um kompliziertere Themen wie eine Abstraktionsschicht für eine Datenbank oder Ähnliches kommen muss. Die Idee dahinter ist, dass nur
+die Libraries hinzugefügt werden die auch wirklich benötigt werden, was ein modularer und maßgeschneiderten Ansatz verspricht.
+
+\subsubsection{Spring Boot: Quivia}
+Spring Boot \cite{SpringBoot} ist ein Java-Framework das Entwickeln von robusten, skalierbaren und wartbaren Backends. Es sticht heraus durch 
+die Möglichkeit wenig selbst zu konfigurieren, da Spring Boot automatisch viele der Konfigurationen für uns erledigt. Ein weiterer Vorteil der 
+Nutzung des Spring-Frameworks ist, dass viele der Libraries, welche wir benötigen, eine gute Integration mit Spring haben. Quivia nutzt 
+Spring-Security um den Zugriff auf Rest-Endpunkte zu verwalten. Es hat auch Integrationsmöglichkeiten mit Systemfunktionen, wie z.B. 
+Cron \cite{Cronjob}. Da Quivia auch auf Microsoft's Azure Cloud deployt ist, erlaubt uns die Nutzung von diesen Spring Features Busy-Waiting zu 
+verhindern.

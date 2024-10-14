@@ -1,0 +1,10 @@
+---
+version: '3'
+services:
+  latex:
+    container_name: projektarbeit_latex
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: my_latex:latest
+

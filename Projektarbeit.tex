@@ -1,0 +1,162 @@
+\documentclass[12pt, a4paper]{scrartcl}
+\usepackage[ngerman]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{tabularx}
+\usepackage{xltabular}
+\usepackage{wrapfig}
+\usepackage{float}
+\usepackage{color}
+\usepackage{hyperref}
+\usepackage{setspace}
+\usepackage{fontspec}
+\usepackage{parskip}
+\usepackage[style=numeric, backend=biber]{biblatex}
+\usepackage{csquotes}
+\usepackage[top=2.5cm, bottom=2cm, left=2.5cm, right=2.5cm]{geometry}
+\usepackage{listings}
+\usepackage{bookmark}
+\usepackage{graphicx}
+\usepackage{pdfpages}
+\usepackage{ifthen}
+\usepackage{scrlayer-scrpage}
+\usepackage{rwudefs}
+
+\makeatletter
+\linespread{1.25} % https://tex.stackexchange.com/questions/65849/confusion-onehalfspacing-vs-spacing-vs-word-vs-the-world
+% \setmainfont[Ligatures=TeX]{Arial}
+% \setsansfont[Ligatures=TeX]{Arial}
+\setsansfont[Ligatures=TeX]{Barlow Semi Condensed} % RWU Font
+\setmainfont[Ligatures=TeX]{Barlow Semi Condensed} % RWU Font
+\addbibresource{references.bib}
+\hypersetup{
+    colorlinks=true, %set true if you want colored links
+    linktoc=all,     %set to all if you want both sections and subsections linked
+    linkcolor=blue,  %choose some color if you want links to stand out
+    urlcolor=blue,
+    citecolor=blue,
+}
+
+% Define a custom page style for the title page
+\newpairofpagestyles{titlestyle}{
+  \setlength{\headheight}{52pt}
+  \lohead*{}
+  \cohead*{}
+  \rohead*{\rwulogo}
+}
+
+\lstdefinestyle{codeStyle}{
+    basicstyle=\ttfamily\small,
+    frame=single,          % Add a frame around the code
+    framerule=0.5pt,       % Thickness of the frame
+    framesep=3pt,          % Space between the frame and the code
+    rulecolor=\color{black}, % Color of the frame
+    numbers=left,
+    numberstyle=\small
+}
+\lstset{style=codeStyle}
+\renewcommand{\lstlistingname}{Beispiel}
+
+% Define custom macro
+% Macro highlight
+\newcommand{\highlight}[1]{
+  \colorbox{yellow}{#1}
+}
+\newcommand{\centeredpicture}[4]{
+	\begin{figure}[H]
+		\centering
+		\if\relax\detokenize{#2}\relax
+			\includegraphics[width=\textwidth]{#1}
+		\else
+			\includegraphics[width=#2]{#1}
+		\fi
+		\caption{#3}
+		\label{#4}
+	\end{figure}
+}
+
+\newcommand{\wrappicture}[6]{
+	\begin{wrapfigure}{#1}{#2}
+		\centering
+		\if\relax\detokenize{#3}\relax
+			\includegraphics[width=\textwidth]{#4}
+		\else
+			\includegraphics[width=#3]{#4}
+		\fi
+		\caption{#5}
+		\label{#6}
+	\end{wrapfigure}
+}
+
+\newcommand{\sidebysideimage}[6]{
+	\begin{figure}[htbp]
+		\begin{minipage}{0.47\textwidth}
+			\includegraphics[width=\textwidth]{#1}
+      \captionof{figure}{#2}
+      \label{#3}
+		\end{minipage}\hfill
+		\begin{minipage}{0.47\textwidth}
+			\includegraphics[width=\textwidth]{#4}
+      \captionof{figure}{#5}
+      \label{#6}
+		\end{minipage}
+	\end{figure}
+}
+
+\author{David Metzler}
+\title{Projektarbeit: Boot-Time Analysis for Linux}
+\date{\today} % TODO: Abgabedatum eintragen.
+
+\makeatletter
+\newcommand{\maketitlefont}{
+  \fontfamily{\rmdefault}\fontsize{28}{34}\selectfont % Adjust as needed
+}
+\makeatother
+
+\makeatletter
+\renewcommand{\maketitle}{
+  \begin{titlepage}
+    \centering
+    \thispagestyle{titlestyle}
+    \vspace{4em}
+    {\Huge\bfseries\maketitlefont\@title\par}
+    \vspace{4em}
+    \large
+    Studiengang Angewandte Informatik\\
+    Wintersemester 2024/2025\\
+    \vspace{3em}
+    Fakultät Elektrotechnik und Informatik\\
+    RWU Hochschule Ravensburg-Weingarten\\
+    Doggenriedstrasse\\
+    88250 Weingarten\\
+    \vspace{3em}
+    {\large\scshape\@author\par}
+    35582\\
+    Ergetsweiler 4\\
+    88273 Fronhofen\\
+    {\large\itshape\@date\par}
+    \normalsize
+    \vspace{1em}
+  \end{titlepage}
+  \clearpage
+}
+\makeatother
+
+\begin{document}
+\maketitle
+\tableofcontents
+\newpage
+\section{Einleitung}
+\input{chapters/Einleitung.tex}
+\newpage
+\section{Was wird benötigt? }
+\input{chapters/Requirements.tex}
+\newpage
+\section{Typische Tätigkeiten und Arbeitsorganisation}
+\input{chapters/TypischeTaetigkeitenUndArbeitsorganisation.tex}
+\newpage
+\section{Gesamteinschätzung}
+\input{chapters/Gesamteinschaetzung.tex}
+\newpage
+\printbibliography
+\end{document}
