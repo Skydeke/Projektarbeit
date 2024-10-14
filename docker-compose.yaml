@@ -7,4 +7,7 @@ services:
       context: .
       dockerfile: Dockerfile
     image: my_latex:latest
-
+    volumes:
+      - ./:/src
+    working_dir: /src
+    command: "latexmk"
