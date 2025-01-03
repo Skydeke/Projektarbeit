@@ -1,0 +1,60 @@
+From 784fc7132938975e28712d2ec94dc42895ecd7a1 Mon Sep 17 00:00:00 2001
+From: Adrian Pop <pop.adrian61@gmail.com>
+Date: Tue, 30 Jun 2020 23:04:00 +0300
+Subject: [PATCH 5/6] Touch input config.
+
+---
+ arch/arm/boot/dts/stm32f7-pinctrl.dtsi |  9 +++++++++
+ arch/arm/boot/dts/stm32f769-disco.dts  | 16 ++++++++++++++++
+ 2 files changed, 25 insertions(+)
+
+diff --git a/arch/arm/boot/dts/stm32f7-pinctrl.dtsi b/arch/arm/boot/dts/stm32f7-pinctrl.dtsi
+index 5663d50455a7..93beb312af02 100644
+--- a/arch/arm/boot/dts/stm32f7-pinctrl.dtsi
++++ b/arch/arm/boot/dts/stm32f7-pinctrl.dtsi
+@@ -172,6 +172,15 @@ pins {
+ 				};
+ 			};
+ 
++			i2c4_pins: i2c4@0 {
++				pins {
++					pinmux = <STM32_PINMUX('D', 12, AF4)>, /* I2C4 SCL */
++						<STM32_PINMUX('B', 7, AF11)>; /* I2S4 SDA */
++					bias-disable;
++					drive-open-drain;
++				};
++			};
++
+ 			usbotg_hs_pins_a: usbotg-hs-0 {
+ 				pins {
+ 					pinmux = <STM32_PINMUX('H', 4, AF10)>, /* OTG_HS_ULPI_NXT */
+diff --git a/arch/arm/boot/dts/stm32f769-disco.dts b/arch/arm/boot/dts/stm32f769-disco.dts
+index 6445ade17a1a..f0f576b575f7 100644
+--- a/arch/arm/boot/dts/stm32f769-disco.dts
++++ b/arch/arm/boot/dts/stm32f769-disco.dts
+@@ -124,6 +124,22 @@ &i2c1 {
+ 	status = "okay";
+ };
+ 
++&i2c4 {
++	pinctrl-0 = <&i2c4_pins>;
++	pinctrl-names = "default";
++	status = "okay";
++	touchscreen@2a {
++		compatible = "focaltech,ft6236"; // ft6206 ?
++		reg = <0x2a>;
++		interrupts = <13 2>;
++		interrupt-parent = <&gpioi>;
++		interrupt-controller;
++		touchscreen-size-x = <480>;
++		touchscreen-size-y = <800>;
++		status = "okay";
++	};
++};
++
+ &rtc {
+ 	status = "okay";
+ };
+-- 
+2.28.0
+

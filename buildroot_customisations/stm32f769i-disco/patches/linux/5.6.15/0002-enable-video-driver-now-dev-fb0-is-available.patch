@@ -1,0 +1,130 @@
+From 8f539f60a11b1766cdefa388543f0d8714d1506b Mon Sep 17 00:00:00 2001
+From: Adrian Pop <pop.adrian61@gmail.com>
+Date: Sat, 2 May 2020 18:07:58 +0300
+Subject: [PATCH 2/6] enable video driver now /dev/fb0 is available
+
+---
+ arch/arm/boot/dts/stm32f746.dtsi      | 22 ++++++++++--
+ arch/arm/boot/dts/stm32f769-disco.dts | 49 +++++++++++++++++++++++++++
+ include/dt-bindings/mfd/stm32f7-rcc.h |  1 +
+ 3 files changed, 70 insertions(+), 2 deletions(-)
+
+diff --git a/arch/arm/boot/dts/stm32f746.dtsi b/arch/arm/boot/dts/stm32f746.dtsi
+index 67bfae3cb112..de21d81581e6 100644
+--- a/arch/arm/boot/dts/stm32f746.dtsi
++++ b/arch/arm/boot/dts/stm32f746.dtsi
+@@ -57,7 +57,7 @@ linux,dma {
+ 			compatible = "shared-dma-pool";
+ 			linux,dma-default;
+ 			no-map;
+-			reg = <0x20020000 0x8000>; /* sram1 */
++			size = <0x100000>;
+ 		};
+ 	};
+ 
+@@ -88,6 +88,25 @@ clk_i2s_ckin: clk-i2s-ckin {
+ 	};
+ 
+ 	soc {
++		ltdc: display-controller@40016800 {
++			compatible = "st,stm32-ltdc";
++			reg = <0x40016800 0x200>;
++			interrupts = <88>, <89>;
++			resets = <&rcc STM32F7_APB2_RESET(LTDC)>;
++			clocks = <&rcc 1 CLK_LCD>;
++			clock-names = "lcd";
++		};
++
++		dsi: dsi@40016c00 {
++			compatible = "st,stm32-dsi";
++			reg = <0x40016c00 0x800>;
++			interrupts = <98>;
++			clocks = <&rcc 1 CLK_F769_DSI>, <&clk_hse>;
++			clock-names = "pclk", "ref";
++			resets = <&rcc STM32F7_APB2_RESET(DSI)>;
++			reset-names = "apb";
++			status = "disabled";
++		};
+ 
+ 		mac: ethernet@40028000 {
+ 			compatible = "st,stm32-dwmac", "snps,dwmac-3.50a", "snps,dwmac";
+@@ -107,7 +126,6 @@ mac: ethernet@40028000 {
+ 			snps,pbl = <8>;
+ 			st,syscon = <&syscfg 0x4>;
+ 			snps,mixed-burst;
+-			dma-ranges;
+ 			phy-handle = <&phy0>;
+ 
+ 			status = "okay";
+diff --git a/arch/arm/boot/dts/stm32f769-disco.dts b/arch/arm/boot/dts/stm32f769-disco.dts
+index bdedc0750a1e..73176ab4f026 100644
+--- a/arch/arm/boot/dts/stm32f769-disco.dts
++++ b/arch/arm/boot/dts/stm32f769-disco.dts
+@@ -187,3 +187,52 @@ &dma1 {
+ &dma2 {
+ 	status = "okay";
+ };
++
++&dsi {
++	#address-cells = <1>;
++	#size-cells = <0>;
++	status = "okay";
++
++	ports {
++		#address-cells = <1>;
++		#size-cells = <0>;
++
++		port@0 {
++			reg = <0>;
++			dsi_in: endpoint {
++				remote-endpoint = <&ltdc_out_dsi>;
++			};
++		};
++
++		port@1 {
++			reg = <1>;
++			dsi_out: endpoint {
++				remote-endpoint = <&dsi_in_panel>;
++			};
++		};
++
++	};
++
++	panel: panel {
++		compatible = "orisetech,otm8009a";
++		reg = <0>; /* dsi virtual channel (0..3) */
++		reset-gpios = <&gpioj 15 GPIO_ACTIVE_LOW>;
++		status = "okay";
++
++		port {
++			dsi_in_panel: endpoint {
++				remote-endpoint = <&dsi_out>;
++			};
++		};
++	};
++};
++
++&ltdc {
++	status = "okay";
++
++	port {
++		ltdc_out_dsi: endpoint {
++			remote-endpoint = <&dsi_in>;
++		};
++	};
++};
+diff --git a/include/dt-bindings/mfd/stm32f7-rcc.h b/include/dt-bindings/mfd/stm32f7-rcc.h
+index a90f3613c584..ba5cb7456ee4 100644
+--- a/include/dt-bindings/mfd/stm32f7-rcc.h
++++ b/include/dt-bindings/mfd/stm32f7-rcc.h
+@@ -107,6 +107,7 @@
+ #define STM32F7_RCC_APB2_SAI1		22
+ #define STM32F7_RCC_APB2_SAI2		23
+ #define STM32F7_RCC_APB2_LTDC		26
++#define STM32F7_RCC_APB2_DSI		27
+ 
+ #define STM32F7_APB2_RESET(bit)	(STM32F7_RCC_APB2_##bit + (0x24 * 8))
+ #define STM32F7_APB2_CLOCK(bit)	(STM32F7_RCC_APB2_##bit + 0xA0)
+-- 
+2.28.0
+

@@ -1,0 +1,107 @@
+From 32a64130f39ae649587eebe79f3664fdbbe7addd Mon Sep 17 00:00:00 2001
+From: Adrian Pop <pop.adrian61@gmail.com>
+Date: Thu, 2 Jul 2020 08:11:28 +0300
+Subject: [PATCH 6/6] Add qspi flash -TODO
+
+---
+ arch/arm/boot/dts/stm32f7-pinctrl.dtsi | 12 ++++++++++++
+ arch/arm/boot/dts/stm32f746.dtsi       | 17 +++++++++++++++--
+ arch/arm/boot/dts/stm32f769-disco.dts  | 15 +++++++++++++--
+ 3 files changed, 40 insertions(+), 4 deletions(-)
+
+diff --git a/arch/arm/boot/dts/stm32f7-pinctrl.dtsi b/arch/arm/boot/dts/stm32f7-pinctrl.dtsi
+index 93beb312af02..77b8767c0672 100644
+--- a/arch/arm/boot/dts/stm32f7-pinctrl.dtsi
++++ b/arch/arm/boot/dts/stm32f7-pinctrl.dtsi
+@@ -320,6 +320,18 @@ pins {
+ 					pinmux = <STM32_PINMUX('C', 3, ANALOG)>;   /* DFSDM_DATA1 */
+ 				};
+ 			};
++
++			qspi_pins: qspi@0 {
++				pins {
++					pinmux = <STM32_PINMUX('B', 2, AF9)>, /* CLK */
++						 <STM32_PINMUX('B', 6, AF10)>, /* BK1_NCS */
++						 <STM32_PINMUX('C', 9, AF9)>, /* BK1_IO0 */
++						 <STM32_PINMUX('C',10, AF9)>, /* BK1_IO1 */
++						 <STM32_PINMUX('D',13, AF9)>, /* BK1_IO3 */
++						 <STM32_PINMUX('E', 2, AF9)>; /* BK1_IO2 */
++					slew-rate = <2>;
++				};
++			};
+ 		};
+ 	};
+ };
+diff --git a/arch/arm/boot/dts/stm32f746.dtsi b/arch/arm/boot/dts/stm32f746.dtsi
+index 88017a509fa3..03e55d7a1d7b 100644
+--- a/arch/arm/boot/dts/stm32f746.dtsi
++++ b/arch/arm/boot/dts/stm32f746.dtsi
+@@ -57,7 +57,7 @@ linux,dma {
+ 			compatible = "shared-dma-pool";
+ 			linux,dma-default;
+ 			no-map;
+-			reg = <0x20020000 0x60000>;
++			size = <0x110000>;
+ 
+ 			/*0x110000 (size for ethernet and display)
+ 			  0xC0000000 +
+@@ -93,11 +93,24 @@ clk_i2s_ckin: clk-i2s-ckin {
+ 	};
+ 
+ 	soc {
++		spi: spi@a0001000 {
++			compatible = "st,stm32f469-qspi";
++			#address-cells = <1>;
++			#size-cells = <0>;
++			reg = <0xA0001000 0x1000>, <0x90000000 0x10000000>;
++			reg-names = "qspi", "qspi_mm";
++			interrupts = <92 1>;
++			spi-max-frequency = <108000000>;
++			clocks = <&rcc 0 (1 + 0x40)>; // clocks = <&rcc QSPI_K>;
++			resets = <&rcc (1 + (0x18 * 8))>; // resets = <&rcc QSPI_R>;
++			pinctrl-0 = <&qspi_pins>;
++		};
++
+ 		ltdc: display-controller@40016800 {
+ 			compatible = "st,stm32-ltdc";
+ 			reg = <0x40016800 0x200>;
+ 			interrupts = <88>, <89>;
+-			resets = <&rcc STM32F7_APB2_RESET(LTDC)>;
++			resets = <&rcc STM32F7_APB2_RESET(LTDC)>; // GPIOJ 15 LTDC reset
+ 			clocks = <&rcc 1 CLK_LCD>;
+ 			clock-names = "lcd";
+ 		};
+diff --git a/arch/arm/boot/dts/stm32f769-disco.dts b/arch/arm/boot/dts/stm32f769-disco.dts
+index f0f576b575f7..975acfe80aab 100644
+--- a/arch/arm/boot/dts/stm32f769-disco.dts
++++ b/arch/arm/boot/dts/stm32f769-disco.dts
+@@ -192,8 +192,8 @@ &mac {
+ 	pinctrl-0 = <&ethernet_rmii>;
+ 	phy-mode = "rmii";
+ 
+-	rx-fifo-depth = <4096>;
+-	tx-fifo-depth = <4096>;
++	rx-fifo-depth = <128>;
++	tx-fifo-depth = <128>;
+ };
+ 
+ &dma1 {
+@@ -274,3 +274,14 @@ dfsdm_adc0: filter@0 {
+ 		status = "okay";
+ 	};
+ };
++
++&spi {
++	status = "okay";
++	flash0: mx66l51235l {
++		compatible = "mx66l51235l";
++		spi-rx-bus-width = <4>;
++		spi-max-frequency = <108000000>;
++		#address-cells = <1>;
++		#size-cells = <1>;
++	};
++};
+\ No newline at end of file
+-- 
+2.28.0
+

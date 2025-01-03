@@ -1,0 +1,120 @@
+From 2005ebd55033a0a3e406d2cde6cdf92e0b25946c Mon Sep 17 00:00:00 2001
+From: adrian <pop.adrian61@gmail.com>
+Date: Sun, 23 Feb 2020 19:53:17 +0200
+Subject: [PATCH 1/6] ethernet fixes;
+
+---
+ arch/arm/boot/dts/stm32f746.dtsi      | 47 +++++++++++++++++++++++++++
+ arch/arm/boot/dts/stm32f769-disco.dts | 34 +++++++++++++++++++
+ 2 files changed, 81 insertions(+)
+
+diff --git a/arch/arm/boot/dts/stm32f746.dtsi b/arch/arm/boot/dts/stm32f746.dtsi
+index 93c063796780..67bfae3cb112 100644
+--- a/arch/arm/boot/dts/stm32f746.dtsi
++++ b/arch/arm/boot/dts/stm32f746.dtsi
+@@ -48,6 +48,19 @@ / {
+ 	#address-cells = <1>;
+ 	#size-cells = <1>;
+ 
++	reserved-memory {
++		#address-cells = <1>;
++		#size-cells = <1>;
++		ranges;
++
++		linux,dma {
++			compatible = "shared-dma-pool";
++			linux,dma-default;
++			no-map;
++			reg = <0x20020000 0x8000>; /* sram1 */
++		};
++	};
++
+ 	clocks {
+ 		clk_hse: clk-hse {
+ 			#clock-cells = <0>;
+@@ -75,6 +88,40 @@ clk_i2s_ckin: clk-i2s-ckin {
+ 	};
+ 
+ 	soc {
++
++		mac: ethernet@40028000 {
++			compatible = "st,stm32-dwmac", "snps,dwmac-3.50a", "snps,dwmac";
++			reg = <0x40028000 0x8000>;
++			reg-names = "stmmaceth";
++
++			resets = <&rcc STM32F7_AHB1_RESET(ETHMAC)>;
++			reset-names = "stmmaceth";
++
++			clocks = <&rcc 0 STM32F7_AHB1_CLOCK(ETHMAC)>,
++				 <&rcc 0 STM32F7_AHB1_CLOCK(ETHMACTX)>,
++				 <&rcc 0 STM32F7_AHB1_CLOCK(ETHMACRX)>;
++			clock-names = "stmmaceth", "mac-clk-tx", "mac-clk-rx";
++
++			interrupts = <61>;
++			interrupt-names = "macirq";
++			snps,pbl = <8>;
++			st,syscon = <&syscfg 0x4>;
++			snps,mixed-burst;
++			dma-ranges;
++			phy-handle = <&phy0>;
++
++			status = "okay";
++
++			mdio0 {
++				#address-cells = <1>;
++				#size-cells = <0>;
++				compatible = "snps,dwmac-mdio";
++				phy0: ethernet-phy@0 {
++					reg = <0>;
++				};
++			};
++		};
++
+ 		timer2: timer@40000000 {
+ 			compatible = "st,stm32-timer";
+ 			reg = <0x40000000 0x400>;
+diff --git a/arch/arm/boot/dts/stm32f769-disco.dts b/arch/arm/boot/dts/stm32f769-disco.dts
+index 1626e00bb2cb..bdedc0750a1e 100644
+--- a/arch/arm/boot/dts/stm32f769-disco.dts
++++ b/arch/arm/boot/dts/stm32f769-disco.dts
+@@ -153,3 +153,37 @@ &usbotg_hs {
+ 	pinctrl-names = "default";
+ 	status = "okay";
+ };
++
++&pinctrl {
++	ethernet_rmii: rmii@0 {
++		pins {
++			pinmux = <STM32_PINMUX('G',13, AF11)>, /* ETH_RMII_TXD0 */
++				 <STM32_PINMUX('G',14, AF11)>, /* ETH_RMII_TXD1 */
++				 <STM32_PINMUX('G',11, AF11)>, /* ETH_RMII_TX_EN */
++				 <STM32_PINMUX('A', 2, AF11)>, /* ETH_MDIO */
++				 <STM32_PINMUX('C', 1, AF11)>, /* ETH_MDC */
++				 <STM32_PINMUX('A', 1, AF11)>, /* ETH_RMII_REF_CLK */
++				 <STM32_PINMUX('A', 7, AF11)>, /* ETH_RMII_CRS_DV */
++				 <STM32_PINMUX('C', 4, AF11)>, /* ETH_RMII_RXD0 */
++				 <STM32_PINMUX('C', 5, AF11)>; /* ETH_RMII_RXD1 */
++			slew-rate = <2>;
++		};
++	};
++
++};
++
++&mac {
++	pinctrl-0 = <&ethernet_rmii>;
++	phy-mode = "rmii";
++
++	rx-fifo-depth = <4096>;
++	tx-fifo-depth = <4096>;
++};
++
++&dma1 {
++	status = "okay";
++};
++
++&dma2 {
++	status = "okay";
++};
+-- 
+2.28.0
+
