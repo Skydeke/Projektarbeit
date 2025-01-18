@@ -1,0 +1,25 @@
+\selectlanguage{ngerman}
+
+\section{Einleitung}
+Die Optimierung der Bootzeit ist ein kritischer Aspekt bei der Entwicklung von Embedded Linux Systemen. Eine schnelle Bootzeit verbessert nicht nur das Benutzererlebnis, sondern kann auch die Effizienz des Systems erhöhen, insbesondere in zeitkritischen Anwendungen. Diese Ausarbeitung analysiert die von Bootlin bereitgestellten Schulungsunterlagen, um eine detaillierte Übersicht über die wichtigsten Techniken und Methoden zur Bootzeitoptimierung zu geben.
+
+\subsection{Anforderungen an Hardware}
+Ein echtes vollwertiges Linux auf einem Micro-Controller zu starten ist nicht möglich,
+denn ein vollwertiges Linux benötigt eine Memory-Management-Unit (MMU). Eine MMU
+erlaubt dem Betriebssystem einen virtuellen Adressraum zu benutzen. Das hat zu Folge,
+dass Prozess - Isolierung aufgeweicht und ''Swapping'' - einen Bereich auf der
+Festplatte auf den Prozesse ausgelagert werden, um den RAM freizuhalten,
+unmöglich ist. Linux unterstützt seit Kernel 2.5.46 offiziell Micro-Controller ohne
+MMU \cite{uCLinuxWikipedia}.
+
+Es sollten auch folgende Ressourcen zur Verfügung stehen:
+\begin{itemize}
+	\item 2 MB Flash für einen Bootleader
+	\item min. 18 MB RAM
+	\item genug Speicher für ein Root-Filesystem, auf dem alle Programme installiert werden
+\end{itemize}
+
+
+Für diese Projektarbeit wurde das STM32F469I-Board gewählt \cite{stmWebsiteBoard}.
+Dieses Board erfüllt die Requirements für Linux und hat zusätzlich ein Display welches
+über Digital Serial Interface (DSI) angesprochen wird.

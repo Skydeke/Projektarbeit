@@ -30,38 +30,14 @@
 \setmainfont[Ligatures=TeX]{Barlow Semi Condensed} % RWU Font
 \addbibresource{references.bib}
 \hypersetup{
-    colorlinks=true, %set true if you want colored links
-    linktoc=all,     %set to all if you want both sections and subsections linked
-    linkcolor=blue,  %choose some color if you want links to stand out
+    colorlinks=true,
+    linktoc=all,
+    linkcolor=black,
     urlcolor=blue,
     citecolor=blue,
 }
 
-% Define a custom page style for the title page
-\newpairofpagestyles{titlestyle}{
-  \setlength{\headheight}{52pt}
-  \lohead*{}
-  \cohead*{}
-  \rohead*{\rwulogo}
-}
-
-\lstdefinestyle{codeStyle}{
-    basicstyle=\ttfamily\small,
-    frame=single,          % Add a frame around the code
-    framerule=0.5pt,       % Thickness of the frame
-    framesep=3pt,          % Space between the frame and the code
-    rulecolor=\color{black}, % Color of the frame
-    numbers=left,
-    numberstyle=\small
-}
-\lstset{style=codeStyle}
-\renewcommand{\lstlistingname}{Beispiel}
-
 % Define custom macro
-% Macro highlight
-\newcommand{\highlight}[1]{
-  \colorbox{yellow}{#1}
-}
 \newcommand{\centeredpicture}[4]{
 	\begin{figure}[H]
 		\centering
@@ -105,52 +81,42 @@
 
 \author{David Metzler}
 \title{Projektarbeit: Boot-Time Analysis for Linux}
-\date{\today} % TODO: Abgabedatum eintragen.
+\date{\today}
 
 \makeatletter
 \newcommand{\maketitlefont}{
-  \fontfamily{\rmdefault}\fontsize{28}{34}\selectfont % Adjust as needed
+  \fontfamily{\rmdefault}\fontsize{28}{34}\selectfont
 }
 \makeatother
 
-\makeatletter
-\renewcommand{\maketitle}{
-  \begin{titlepage}
-    \centering
-    \thispagestyle{titlestyle}
-    \vspace{4em}
-    {\Huge\bfseries\maketitlefont\@title\par}
-    \vspace{4em}
-    \large
-    Studiengang Angewandte Informatik\\
-    Wintersemester 2024/2025\\
-    \vspace{3em}
-    Fakultät Elektrotechnik und Informatik\\
-    RWU Hochschule Ravensburg-Weingarten\\
-    Doggenriedstrasse\\
-    88250 Weingarten\\
-    \vspace{3em}
-    {\large\scshape\@author\par}
-    35582\\
-    Ergetsweiler 4\\
-    88273 Fronhofen\\
-    {\large\itshape\@date\par}
-    \normalsize
-    \vspace{1em}
-  \end{titlepage}
-  \clearpage
-}
-\makeatother
+
+
 
 \begin{document}
+\title{\Huge Projektarbeit: \\ Boot-Time Analysis for Linux}
+\date{\today}
 \maketitle
+\vspace{4cm}
+\begin{minipage}{1.1\textwidth}
+	\flushright
+	\textbf{David Metzler}\\
+	35582 \\
+	Angewandte Informatik
+\end{minipage}
+\newpage
+
 \tableofcontents
 \newpage
-\section{Einleitung und Anforderungen}
-\input{chapters/EinleitungUndAnforderungen.tex}
-\newpage
-\section{Wichtige Tools}
-\input{chapters/WichtigeTools.tex}
-\newpage
+
+\input{chapters/Einleitung.tex}
+\input{chapters/GrundlagenDerBootzeitoptimierungen.tex}
+\input{chapters/ToolchainOptimierungen.tex}
+\input{chapters/InitScripts.tex}
+\input{chapters/FilesystemOptimierungen.tex}
+\input{chapters/KernelOptimierungen.tex}
+\input{chapters/BootloaderOptimierungen.tex}
+\input{chapters/HardwareInitialisierung.tex}
+\input{chapters/Zusammenfassung.tex}
+\input{chapters/Referenzen.tex}
 \printbibliography
 \end{document}
