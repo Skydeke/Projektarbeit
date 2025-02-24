@@ -1,0 +1,13 @@
+\selectlanguage{ngerman}
+
+\section{Anwendungsoptimierung}
+Die Optimierung von Anwendungen ist ein wesentlicher erster Schritt, um ein voll funktionsfähiges Linux-System zu erstellen, das schnell und effizient zum Laufen kommt. Dabei gibt es verschiedene Werkzeuge, die helfen, Systemaufrufe, Speicherverwaltung und die Performance der Anwendungen zu analysieren. Da es vile verschiedene Anwendungen mit unterschiedlichen Anforderungen gibt, werden nur Tools besprochen, die bei der Anwendungsoptimierung helfen.
+
+\textit{strace} ist ein hilfreiches Tool, um die Systemaufrufe einer Anwendung zu verfolgen. Es ermöglicht das Verständnis des Zeitverbrauchs im User-Space, hilft ineffiziente Dateizugriffe und Speicherallokationen zu finden und identifiziert die größten Zeitverbraucher. Mit dem Befehl \texttt{strace <command>} lässt sich ein neuer Prozess tracen, \texttt{strace -f <command>} auch die Kindprozesse und \texttt{strace -c <command>} liefert eine Zeitstatistik pro Systemaufruf.
+
+\textit{ltrace} ergänzt \textit{strace}, indem es die Aufrufe von Shared Libraries und empfangene Signale anzeigt. Es ermöglicht die Filterung von Bibliotheksaufrufen und unterstützt auch die Anzeige von Systemaufrufen über die Option \texttt{-S}.
+
+\textit{Valgrind} ist ein Framework zur Analyse von Programmen, das insbesondere bei der Fehlersuche in der Speicherverwaltung von großer Hilfe ist. Mit \textit{Memcheck} können Speicherprobleme erkannt werden, während \textit{Cachegrind} als Cache-Profiler zur Analyse von Cache-Misses dient.
+
+\textit{perf} nutzt Hardware-Performance-Counter und ist deutlich schneller als \textit{Valgrind}. Es erfordert einen Kernel mit den Konfigurationsoptionen \texttt{CONFIG\_PERF\_EVENTS} und \texttt{CONFIG\_HW\_PERF\_EVENTS}.
+
