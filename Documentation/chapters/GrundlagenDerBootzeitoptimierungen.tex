@@ -1,0 +1,20 @@
+\selectlanguage{ngerman}
+
+\section{Grundlagen der Bootzeitoptimierung}
+Um die Bootzeit gezielt zu optimieren, muss sie präzise gemessen werden. Wichtige Referenzpunkte sind das Erscheinen eines Splash-Screens, der Start eines Dienstes oder die vollständige Betriebsbereitschaft des Systems. Außerdem wird besprochen, welche Optimierungen in welcher Reihenfolge sinnvoll sind.
+
+\subsection{Messmethoden}
+Bootlin empfiehlt die folgenden Messmethoden:
+\begin{itemize}
+	\item \textbf{Oszilloskop:} Eignet sich gut, um präzise Messungen direkt an den GPIO-Pins oder der Stromversorgung durchzuführen.
+	\item \textbf{Mikrocontroller (z.B. Arduino):} Eine günstige Möglichkeit, die Spannung zu überwachen.
+	\item \textbf{Serielle Konsole:} Ermöglicht das Aufzeichnen von Boot-Zeitstempeln mit \textit{grabserial}.
+\end{itemize}
+
+Wir verwenden \textit{grabserial}, da es einfach einzurichten ist und ohne zusätzliche Hardware auskommt. Es ermöglicht uns eine automatisierte und reproduzierbare Erfassung der Bootzeiten.
+
+\subsection{Bootphasen}
+Ein typischer Bootvorgang beginnt mit dem ROM-Code, der das Bootstrap-Image in den SRAM lädt. Anschließend übernimmt der X-Loader bzw. U-Boot SPL, initialisiert den DRAM und lädt den eigentlichen Bootloader. Der U-Boot startet dann das Kernel-Image und bietet eine Shell zur manuellen Konfiguration. Sobald der Linux-Kernel die Kontrolle übernimmt, werden die Hardware initialisiert und erste Systemdienste gestartet. Schließlich beginnt der Userspace, in dem Startup-Skripte ausgeführt und alle notwendigen Prozesse für den Betriebssystembetrieb gestartet werden.
+
+\subsection{Optimierungsreihenfolge}
+Es wird empfohlen, mit den Startup-Skripten zu beginnen und unnötige Dienste zu deaktivieren. Danach sollte der Kernel optimiert werden, indem nur benötigte Module geladen werden. Abschließend lassen sich Verzögerungen im Bootloader reduzieren und die Ladezeiten optimieren.
