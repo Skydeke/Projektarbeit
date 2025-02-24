@@ -1,0 +1,13 @@
+\selectlanguage{ngerman}
+
+\section{Toolchain Optimierungen}
+Die Wahl der richtigen Toolchain hat einen erheblichen Einfluss auf die Bootzeit, Leistung und Größe des Systems. Im Kontext von Buildroot ist die Toolchain ein zentraler Bestandteil, da sie für die Erstellung des Cross-Compilers verantwortlich ist, der das System für die Zielplattform baut. Einige wichtige Aspekte der Toolchain sind:
+
+\begin{itemize}
+	\item \textbf{GCC und Binutils Versionen:} Neuere Versionen bieten oft verbesserte Optimierungsmöglichkeiten.
+	\item \textbf{C-Bibliothek:} Auswahl zwischen \textit{glibc}, \textit{uClibc} oder \textit{musl}.
+	\item \textbf{Instruktionssatzvarianten:} Manche Prozessoren unterstützen mehrere Instruktionssatzvarianten, wie z.B. ARM und Thumb2. ARM bietet einen 32-Bit-Instruktionssatz für leistungsintensive Aufgaben, während Thumb2 eine Mischung aus 16-Bit- und 32-Bit-Instruktionen verwendet, um die Code-Dichte und den Speicherverbrauch zu optimieren.
+\end{itemize}
+
+\subsection{C-Bibliotheken}
+Die Wahl der C-Bibliothek hat großen Einfluss auf die Größe und Performance des Systems [12]. Aufgrund der fehlenden Memory Management Unit (MMU) im STM32F769I Mikrocontroller können wir keine Bibliotheken wie \textit{glibc} oder \textit{musl} verwenden, da diese eine MMU erfordern. Stattdessen setzen wir auf \textit{uClibc-ng}, da diese speziell für Systeme ohne MMU entwickelt wurde und eine kompakte, ressourcenschonende Lösung bietet.
