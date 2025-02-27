@@ -6,7 +6,6 @@ This describes how to use and customize the Buildroot configuration for the STM3
 Configuration
 ------------- 
 
-
 ```
     # Configure Buildroot
     cd buildroot
@@ -14,6 +13,7 @@ Configuration
     make uboot-menuconfig
     make linux-menuconfig
     make uclibc-menuconfig
+    make busybox-menuconfig  
     #Save Buildroot Config to customisations
     cd buildroot_customisations
     make save_all
@@ -22,14 +22,12 @@ Configuration
 Building
 --------
 
-
 ```
     cd buildroot_customisations
     make build
 ```
 Flashing
 --------
-
 
 ```
   cd buildroot_customisations
