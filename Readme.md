@@ -3,11 +3,15 @@ Dieses Projekt zielt darauf ab, die Bootzeit eines Embedded Linux-Systems auf de
 
 ## Projektstruktur
 *   **`buildroot_customisations`**: Dieses Verzeichnis enthält alle Anpassungen für Buildroot.
-    *   **Patches**: Hier befinden sich Patches, die auf Buildroot angewendet werden, um spezifische Funktionen oder Fehlerbehebungen für die Zielhardware zu implementieren.
-    *   **Definitionen**:  Dieses Verzeichnis beinhaltet zusätzliche Definitionen und Konfigurationen, um Buildroot an die spezifischen Anforderungen des STM32F769I-Boards anzupassen.
     **Ziel ist die Erstellung eines minimalen und optimierten Linux-Systems mit Buildroot**.
 *   **`Documentation`**: In diesem Verzeichnis befinden sich die LaTeX-Dokumente, die die Projektarbeit und ihre Ergebnisse beschreiben.
 
 ## Git Repository
 Die Projektdateien sind unter folgender URL verfügbar: `git@github.com:Skydeke/Projektarbeit.git`
+
+## Initial Setup
+```
+cd buildroot_customisations
+make bootstrap
+```
 
