@@ -1,0 +1,16 @@
+\selectlanguage{ngerman}
+
+\section{Optimierung von Init-Skripten und Systemstart}
+
+\subsection{Methoden zur Optimierung}
+Um den Systemstart zu beschleunigen, gibt es mehrere Ansätze. Ein wichtiger Punkt ist, die Anwendung so früh wie möglich zu starten, damit sie nicht unnötig aufgeschoben wird. Auch das Vereinfachen von Shell-Skripten trägt zur Optimierung bei, da komplexe oder ineffiziente Skripte den Bootprozess verlangsamen können.
+
+\subsection{Messung der Bootzeit}
+Um die Auswirkungen solcher Optimierungen zu überprüfen, gibt es verschiedene Werkzeuge. \textit{bootchartd} zeichnet während des Init-Prozesses alle gestarteten Prozesse auf. Die gesammelten Daten lassen sich dann mit \textit{bootchart.jar} grafisch auswerten. Für Systeme mit \textit{systemd} bietet \textit{systemd-analyze} eine detaillierte Analyse des Bootvorgangs und zeigt unter anderem die Startzeiten einzelner Dienste an. Allerdings ist \textit{systemd} nicht ideal für Systeme mit beschränkten Ressourcen, da es verhältnismäßig viel Speicher und CPU-Leistung benötigt. Leichtgewichtigere Alternativen wie \textit{BusyBox init} sind in solchen Fällen oft besser geeignet.
+
+\subsection{Init-Skripte}
+Auch bei den Init-Skripten selbst gibt es Einsparpotenzial. Ein zentraler Trick ist, alle Dienste über ein einziges Start-Skript zu starten, etwa über \textit{/etc/init.d/rcS}, um wiederholte Aufrufe von \textit{/bin/sh} zu vermeiden. Zudem lohnt es sich, wo möglich auf Shell-Builtins zurückzugreifen, anstatt externe Programme aufzurufen – das spart \textit{fork/exec}-Aufrufe und reduziert den Overhead. Auch Pipes und Backticks sollten möglichst vermieden werden, da sie oft unnötige Prozesse erzeugen und so den Start verlangsamen.
+
+\subsection{Schneller Splashscreen}
+Ein schneller Bootprozess wirkt oft noch flüssiger, wenn ein passender Splashscreen angezeigt wird. Eine einfache Möglichkeit dafür ist \textit{fbsplash}, das schnell ein Startbild anzeigen kann. Wer es noch schneller haben will, kann das Bild direkt aus dem Framebuffer auslesen, mit \textit{lzop} komprimieren und das komprimierte Bild ins \textit{initramfs} legen. Für animierte Darstellungen kann alternativ ein kleines C-Programm genutzt werden, das direkt auf den Framebuffer zeichnet.
+

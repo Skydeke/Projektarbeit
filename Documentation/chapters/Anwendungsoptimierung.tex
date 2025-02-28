@@ -1,7 +1,7 @@
 \selectlanguage{ngerman}
 
 \section{Anwendungsoptimierung}
-Die Optimierung von Anwendungen ist ein wesentlicher erster Schritt, um ein voll funktionsfähiges Linux-System zu erstellen, das schnell und effizient zum Laufen kommt. Dabei gibt es verschiedene Werkzeuge, die helfen, Systemaufrufe, Speicherverwaltung und die Performance der Anwendungen zu analysieren. Da es vile verschiedene Anwendungen mit unterschiedlichen Anforderungen gibt, werden nur Tools besprochen, die bei der Anwendungsoptimierung helfen.
+Die Optimierung von Anwendungen ist ein wesentlicher erster Schritt, um ein voll funktionsfähiges Linux-System zu erstellen, das schnell und effizient zum Laufen kommt. Dabei gibt es verschiedene Werkzeuge, die helfen, Systemaufrufe, Speicherverwaltung und die Performance der Anwendungen zu analysieren. Da es viele verschiedene Anwendungen mit unterschiedlichen Anforderungen gibt, werden nur Tools besprochen, die bei der Anwendungsoptimierung helfen.
 
 \textit{strace} ist ein hilfreiches Tool, um die Systemaufrufe einer Anwendung zu verfolgen. Es ermöglicht das Verständnis des Zeitverbrauchs im User-Space, hilft ineffiziente Dateizugriffe und Speicherallokationen zu finden und identifiziert die größten Zeitverbraucher. Mit dem Befehl \texttt{strace <command>} lässt sich ein neuer Prozess tracen, \texttt{strace -f <command>} auch die Kindprozesse und \texttt{strace -c <command>} liefert eine Zeitstatistik pro Systemaufruf.
 
