@@ -1,0 +1,17 @@
+\selectlanguage{ngerman}
+
+\section{Filesystem Optimierungen}
+
+\subsection{Filesystem Auswahl}
+Die Wahl des Dateisystems beeinflusst die Bootzeit erheblich. Grundsätzlich lassen sich Dateisysteme in zwei Kategorien einteilen: Block-Storage-Dateisysteme wie \textit{ext2/4}, \textit{xfs}, \textit{btrfs}, \textit{f2fs}, \textit{SquashFS} und \textit{EROFS} sowie Raw-Flash-Dateisysteme wie \textit{JFFS2}, \textit{YAFFS2} und \textit{UBIFS}. Aufgrund der begrenzten Speicherkapazität des genutzten Flash-Speichers wurden in den Tests jedoch ausschließlich Block-Storage-Dateisysteme untersucht.
+
+Für Read-Only-Root-Dateisysteme hat sich \textit{SquashFS} als eine gute Wahl erwiesen, da es schnelle Mountzeiten und hohe Lesegeschwindigkeit bietet. \textit{EROFS} ist eine neuere Alternative, die ebenfalls für Read-Only-Dateisysteme optimiert wurde und eine noch bessere Lesegeschwindigkeit erreichen kann. Falls Schreibzugriffe erforderlich sind, bietet sich \textit{UBIFS} mit aktiviertem \textit{UBI Fastmap} an, um die Mountzeiten weiter zu verbessern.
+
+\subsection{Initramfs}
+Ein kleines \textit{initramfs} kann den Bootvorgang beschleunigen, indem es als Zwischenschritt vor dem eigentlichen Root-Dateisystem dient. Es kann entweder direkt in das Kernel-Image integriert oder vom Bootloader geladen werden. Besonders für kleine Root-Dateisysteme ist dies vorteilhaft. Die Erstellung eines \textit{initramfs} erfolgt durch das Erstellen eines CPIO-Archivs, das anschließend komprimiert wird. Alternativ kann beim Kernel-Kompilieren die Option \textit{CONFIG\_INITRAMFS\_SOURCE} genutzt werden, um das \textit{initramfs} direkt in das Kernel-Image zu integrieren. Um die Größe gering zu halten, empfiehlt es sich, statisch gelinkte Anwendungen zu verwenden, was in Buildroot über \textit{BR2\_STATIC\_LIBS} konfiguriert werden kann. Zudem sollte vermieden werden, ein komprimiertes \textit{initramfs} innerhalb eines bereits komprimierten Kernel-Images zu verwenden (\textit{CONFIG\_INITRAMFS\_COMPRESSION\_NONE}), um doppelte Komprimierung zu verhindern.
+
+\subsection{Filesystem Optimierung Ergebnisse}
+Tests auf dem STM32F769I zeigten, dass \textit{ext2} mit \textit{gzip}-Komprimierung in Kombination mit einem \textit{initramfs} die besten Bootzeiten liefert. Andere Block-Storage-Dateisysteme waren entweder langsamer oder boten keinen nennenswerten Vorteil für den Einsatzzweck. Aufgrund begrenzter Flash-Kapazitäten wurden Raw-Flash-Dateisysteme nicht getestet.
+
+
+
