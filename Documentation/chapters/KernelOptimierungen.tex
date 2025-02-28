@@ -1,0 +1,16 @@
+\selectlanguage{ngerman}
+
+\section{Kernel Optimierungen}
+
+\subsection{Methoden zur Optimierung}
+Um die Bootzeit zu optimieren, sollten Kerneländerungen schrittweise vorgenommen und regelmäßig Snapshots erstellt werden. Dadurch lassen sich Probleme leichter identifizieren und rückgängig machen. Zur Analyse von Engpässen in der Kernel-Initialisierung bietet sich der Bootparameter \textit{initcall\_debug} an, der die zeitaufwendigsten Initialisierungsfunktionen auflistet.
+
+\subsection{Kernelgröße reduzieren}
+Eine Reduzierung der Kernelgröße kann die Ladezeiten verbessern. Nicht benötigte Funktionen sollten als Module kompiliert oder ganz deaktiviert werden. Optionen wie \textit{CONFIG\_KALLSYMS}, \textit{CONFIG\_DEBUG\_FS} und \textit{CONFIG\_BUG} können abgeschaltet werden, um die Kernelgröße weiter zu verringern. Spezielle Features für Embedded-Systeme, wie \textit{CONFIG\_EMBEDDED} und \textit{CONFIG\_SLUB\_TINY}, helfen ebenfalls dabei, den Speicherverbrauch zu minimieren.
+
+\subsection{Kernelkompression}
+Die Wahl des Kompressionsalgorithmus hat einen direkten Einfluss auf die Bootzeit. Auf STM32F769NIH6 (dem Prozessor des STM32F769I-Disco Baords) hat sich Gzip als die besten Optionen erwiesen, da sie einen guten Kompromiss zwischen Kompressionsrate und Dekompressionsgeschwindigkeit bieten. Da die Performance stark von der Zielhardware abhängt, sollten verschiedene Algorithmen getestet werden.
+
+\subsection{Weitere Kernel Optimierungen}
+Zusätzliche Optimierungen können die Bootzeit weiter verringern. Durch das Kompilieren mit \textit{gcc -Os} (\textit{CONFIG\_CC\_OPTIMIZE\_FOR\_SIZE}) wird der erzeugte Code kleiner, was die Ladezeiten reduziert. Verzögerte Initialisierungen von Treibern und \textit{initcall}-Funktionen helfen, den Bootprozess effizienter zu gestalten. Die Konsolenausgabe kann mit dem Kernelparameter \textit{quiet} deaktiviert werden, um unnötige Verzögerungen durch Debug-Meldungen zu vermeiden. Zudem kann der Loops-Per-Jiffy-Wert (\textit{lpj}) vorkonfiguriert werden, um das Kalibrieren beim Booten zu überspringen. Auf Systemen mit nur einem Kern sollte die Multiprozessorunterstützung (\textit{CONFIG\_SMP}) deaktiviert werden, um den Kernel weiter zu verschlanken. Schließlich kann der Kernel im Thumb2-Modus kompiliert werden (\textit{CONFIG\_THUMB2\_KERNEL}), was den Code kompakter macht und die Ausführungszeit verkürzen kann.
+

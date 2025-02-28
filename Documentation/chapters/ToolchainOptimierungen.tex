@@ -10,4 +10,4 @@ Die Wahl der richtigen Toolchain hat einen erheblichen Einfluss auf die Bootzeit
 \end{itemize}
 
 \subsection{C-Bibliotheken}
-Die Wahl der C-Bibliothek hat großen Einfluss auf die Größe und Performance des Systems [12]. Aufgrund der fehlenden Memory Management Unit (MMU) im STM32F769I Mikrocontroller können wir keine Bibliotheken wie \textit{glibc} oder \textit{musl} verwenden, da diese eine MMU erfordern. Stattdessen setzen wir auf \textit{uClibc-ng}, da diese speziell für Systeme ohne MMU entwickelt wurde und eine kompakte, ressourcenschonende Lösung bietet.
+Die Wahl der C-Bibliothek hat großen Einfluss auf die Größe und Performance des Systems. Aufgrund der fehlenden Memory Management Unit (MMU) im STM32F769I Mikrocontroller können wir keine Bibliotheken wie \textit{glibc} oder \textit{musl} verwenden, da diese eine MMU erfordern. Stattdessen setzen wir auf \textit{uClibc-ng}, da diese speziell für Systeme ohne MMU entwickelt wurde und eine kompakte, ressourcenschonende Lösung bietet.
