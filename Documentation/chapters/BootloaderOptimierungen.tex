@@ -1,0 +1,19 @@
+\selectlanguage{ngerman}
+
+\section{Bootloader Optimierungen}
+
+\subsection{U-Boot Optimierungen}
+Zur Optimierung von U-Boot sollten nicht benötigte Funktionalitäten entfernt werden, um die Bootzeit zu reduzieren. Eine einfache Möglichkeit, Verzögerungen zu minimieren, besteht darin, die Boot-Verzögerung durch den Befehl \textit{setenv bootdelay 0} zu deaktivieren (oder zu Compile-Time die Default-Verzögerung auf 0 stellen). Darüber hinaus kann die Vereinfachung von Boot-Skripten dazu beitragen, die Startzeit weiter zu optimieren. Beim Kopieren des Kernels ist es wichtig, die exakte Größe zu berücksichtigen, um Fehler zu vermeiden. Zudem sollte das komprimierte Kernel-Image weit genug vom RAM-Start geladen werden, um Speicherüberschneidungen zu vermeiden.
+
+\subsection{U-Boot Falcon Mode}
+Der \textit{Falcon Mode} ist eine Technik zur Beschleunigung des Bootvorgangs, indem der Kernel direkt aus dem SPL geladen wird. Dadurch entfällt das vollständige Laden und Ausführen von U-Boot, was die Bootzeit erheblich reduziert. Allerdings erfordert dieser Modus ein spezielles Verfahren zur Aktualisierung von Kernel, Device Tree Blob (DTB) und Kernel-Parametern. Die Konfiguration erfolgt über die Optionen \textit{CONFIG\_SPL\_OS\_BOOT, CONFIG\_CMD\_SPL} und \textit{CONFIG\_SPL\_SIZE\_LIMIT}. Zudem muss das \textbf{uImage} aus dem \textbf{zImage} mit dem Befehl \textit{mkimage} erstellt werden.
+
+\subsection{Booten von Raw MMC}
+Beim Booten von Raw MMC wird eine FAT-Partition benötigt, um die SPL-Dateien zu speichern. Dabei sollten Partitionsoffsets ein Vielfaches der Segmentgröße sein, um eine optimale Speicherverteilung zu gewährleisten. Die U-Boot-Konfiguration für Plattformen wie den STM32F769I-Disco umfasst Parameter wie \textit{CONFIG\_SPL\_OS\_BOOT, CONFIG\_SPL\_SIZE\_LIMIT, CONFIG\_SPL\_LEGACY\_IMAGE\_FORMAT, CONFIG\_SPL\_MMC} und \textit{CONFIG\_CMD\_SPL}. Um die Kernel-Argumente direkt auf die Raw-MMC zu schreiben, kann nach \textit{spl export} der Befehl \textit{mmc write} verwendet werden. Tests haben jedoch gezeigt, dass der MMC-Treiber im SPL auf einigen Plattformen eine schlechte Performance aufweist, was zu längeren Bootzeiten führen kann.
+
+\subsection{Booten von Raw NAND}
+Beim Booten von Raw NAND ist der SPL-Offset fest vorgegeben, während alle anderen Offsets konfigurierbar sind. Diese sollten ein Vielfaches der Blockgröße von 128 KiB sein, um eine korrekte Speicherallokation zu gewährleisten.
+
+\subsection{Probleme und Erkenntnisse mit dem Falcon Modus}
+Obwohl der Falcon Mode viele Vorteile bietet, gibt es einige Herausforderungen. Die Performance des SPL-Speichertreibers ist nicht auf allen Plattformen gleich gut, und die Funktionalität wird durch die Größe des verfügbaren SRAMs limitiert. Zudem kann es notwendig sein, Initialisierungen von U-Boot direkt in der SPL zu implementieren, da der Kernel auf bestimmte Vorbereitungen angewiesen sein könnte. Ein weiteres Problem besteht darin, dass es schwierig ist, Produktionsimages ohne manuelle Eingriffe in U-Boot zu erzeugen. Zudem unterstützt U-Boot derzeit keine Dekomprimierung innerhalb der SPL, was den Speicherverbrauch erhöht. Schließlich ist der Befehl \textit{bootm} in U-Boot langsamer als \textit{bootz}, was sich negativ auf die Bootzeit auswirken kann.
+
