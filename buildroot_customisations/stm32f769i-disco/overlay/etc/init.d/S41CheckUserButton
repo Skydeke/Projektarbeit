@@ -1,0 +1,56 @@
+#!/bin/sh
+
+### BEGIN INIT INFO
+# Provides:          check_user_button
+# Required-Start:    $local_fs $remote_fs $network
+# Required-Stop:     $local_fs $remote_fs $network
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: Periodically checks the user button (PA0)
+# Description:       Triggers pan_fb.sh when the user button is pressed.
+### END INIT INFO
+
+USER_BUTTON_GPIO="PA0"
+BUTTON_ACTIVE_STATE="active"
+PANFB_SCRIPT="/root/pan_fb.sh"
+CHECK_INTERVAL=1  # Check every 1 second
+
+do_check() {
+    while true; do
+        # Query the GPIO state using gpioget (response looks like "PA0=inactive")
+        button_state=$(gpioget $USER_BUTTON_GPIO)
+        # Parse the state from the response (e.g., "PA0=inactive")
+        state=${button_state#*=}  # Get the part after '=' (either "active" or "inactive")
+
+        if [ "$state" == "$BUTTON_ACTIVE_STATE" ]; then
+            # If button is pressed (active), execute the script
+            # echo "User button pressed, triggering $PANFB_SCRIPT."
+            $PANFB_SCRIPT
+        fi
+
+        # Check if sleep works, otherwise stop the service
+        if ! sleep $CHECK_INTERVAL; then
+            echo "Error: sleep command failed, stopping service."
+            exit 1
+        fi
+    done
+}
+
+case "$1" in
+  start)
+    echo "Starting User Button Monitor..."
+    do_check &
+    ;;
+  stop)
+    echo "Stopping User Button Monitor..."
+    # No easy way to stop the background process, so just kill it
+    pkill -f "$0"
+    ;;
+  *)
+    echo "Usage: /etc/init.d/check_user_button {start|stop}"
+    exit 1
+    ;;
+esac
+
+exit 0
+

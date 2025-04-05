@@ -1,0 +1,3 @@
+#!/bin/sh
+# But sth on the scrren.
+cat /proc/interrupts > /dev/tty1
