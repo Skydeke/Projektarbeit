@@ -1,0 +1,10 @@
+name: boot-timer
+channels:
+  - conda-forge
+dependencies:
+  - python=3.11
+  - pyserial
+  - pip
+  - pip:
+      - grabserial
+
