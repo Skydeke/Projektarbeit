@@ -43,7 +43,7 @@ while true; do
   # Start measuring boot time
   echo "[*] Measuring boot time from serial log..."
   # Use grabserial to capture output with pattern matching for boot sequence
-  grabserial -d "$SERIAL_PORT" -b $BAUD -t -m "U-Boot 2025.01" -e 120 > "$BOOT_LOG_FILE" 2>/dev/null
+  grabserial -d "$SERIAL_PORT" -b $BAUD -t -m "U-Boot 2025.01" -e 20 > "$BOOT_LOG_FILE" 2>/dev/null
 
   # Check if the boot log is empty and delete if so
   if [ ! -s "$BOOT_LOG_FILE" ]; then
@@ -87,26 +87,27 @@ while true; do
     UBOOT_TIME="N/A"
   fi
 
-  if [ -n "$BOOT_UNCOMPRESS_TIMESTAMP" ] && [ -n "$BOOT_KERNEL" ]; then
-    # Uncompress time: From "Uncompressing Linux... done" to "Booting Linux on physical CPU 0x0"
-    UNCOMPRESS_TIME=$(echo "$BOOT_KERNEL - $BOOT_UNCOMPRESS_TIMESTAMP" | bc)
-    echo "[*] Uncompress Time: $UNCOMPRESS_TIME seconds"
-  else
-    echo "[!] Could not determine uncompress time. Check '$BOOT_LOG_FILE' for details."
-    UNCOMPRESS_TIME="N/A"
-  fi
-
-  if [ -n "$BOOT_KERNEL" ] && [ -n "$BOOT_END" ]; then
-    # Userland time: From "Booting Linux on physical CPU 0x0" to "buildroot login:"
-    USERLAND_TIME=$(echo "$BOOT_END - $BOOT_KERNEL" | bc)
-    echo "[*] Kernel Time: $USERLAND_TIME seconds"
-  else
-    echo "[!] Could not determine kernel time. Check '$BOOT_LOG_FILE' for details."
-    USERLAND_TIME="N/A"
-  fi
+  # if [ -n "$BOOT_UNCOMPRESS_TIMESTAMP" ] && [ -n "$BOOT_KERNEL" ]; then
+  #   # Uncompress time: From "Uncompressing Linux... done" to "Booting Linux on physical CPU 0x0"
+  #   UNCOMPRESS_TIME=$(echo "$BOOT_KERNEL - $BOOT_UNCOMPRESS_TIMESTAMP" | bc)
+  #   echo "[*] Uncompress Time: $UNCOMPRESS_TIME seconds"
+  # else
+  #   echo "[!] Could not determine uncompress time. Check '$BOOT_LOG_FILE' for details."
+  #   UNCOMPRESS_TIME="N/A"
+  # fi
+  #
+  # if [ -n "$BOOT_KERNEL" ] && [ -n "$BOOT_END" ]; then
+  #   # Userland time: From "Booting Linux on physical CPU 0x0" to "buildroot login:"
+  #   USERLAND_TIME=$(echo "$BOOT_END - $BOOT_KERNEL" | bc)
+  #   echo "[*] Kernel Time: $USERLAND_TIME seconds"
+  # else
+  #   echo "[!] Could not determine kernel time. Check '$BOOT_LOG_FILE' for details."
+  #   USERLAND_TIME="N/A"
+  # fi
 
   # If any of the boot times are N/A, retry
-  if [[ "$TOTAL_BOOT_TIME" == "N/A" || "$UBOOT_TIME" == "N/A" || "$UNCOMPRESS_TIME" == "N/A" || "$USERLAND_TIME" == "N/A" ]]; then
+  #if [[ "$TOTAL_BOOT_TIME" == "N/A" || "$UBOOT_TIME" == "N/A" || "$UNCOMPRESS_TIME" == "N/A" || "$USERLAND_TIME" == "N/A" ]]; then
+  if [[ "$TOTAL_BOOT_TIME" == "N/A" || "$UBOOT_TIME" == "N/A" ]]; then
     echo "[!] One or more times failed. Retrying..."
     rm "$BOOT_LOG_FILE"  # Delete the failed log
     continue

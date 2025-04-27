@@ -1,0 +1,50 @@
+[0.000000 0.000000]   17.108966] sysrq: Resetting
+[1.917209 1.917208] 
+[1.918165 0.000956] 
+[1.918185 0.000021] U-Boot 2025.01 (Apr 05 2025 - 17:21:45 +0200)
+[0.003994 0.003994] 
+[0.004007 0.000013] Model: STMicroelectronics STM32F769-DISCO board
+[0.008073 0.004066] DRAM:  16 MiB
+[0.331997 0.323925] stm32fx_rcc_clock rcc@40023800: set_rate not implemented for clock index 4
+[0.338099 0.006102] stm32fx_rcc_clock rcc@40023800: set_rate not implemented for clock index 4
+[0.345048 0.006948] Core:  43 devices, 24 uclasses, devicetree: separate
+[0.350031 0.004983] Flash: 2 MiB
+[0.351038 0.001007] MMC:   mmc@40011c00: 0
+[0.355084 0.004046] Loading Environment from nowhere... OK
+[0.370000 0.014915] stm32fx_rcc_clock rcc@40023800: set_rate not implemented for clock index 4
+[0.743053 0.373054] In:    serial@40011000
+[0.745133 0.002079] Out:   serial@40011000
+[0.748052 0.002919] Err:   serial@40011000
+[0.750057 0.002005] Net:   
+[0.784080 0.034024] Warning: ethernet@40028000 (eth0) using random MAC address - e6:50:92:0a:42:d1
+[0.799058 0.014977] eth0: ethernet@40028000
+[0.801091 0.002034] Hit SPACE in 0 seconds to stop autoboot.
+[0.963084 0.161993] switch to partitions #0, OK
+[0.965150 0.002066] mmc0 is current device
+[1.027098 0.061947] Scanning mmc 0:1...
+[1.213117 0.186020] Found /boot/extlinux/extlinux.conf
+[1.224113 0.010996] Retrieving file: /boot/extlinux/extlinux.conf
+[1.299125 0.075012] 1:	stm32f769-disco-buildroot
+[1.309142 0.010017] Retrieving file: /boot/zImage
+[2.028227 0.719085] append: console=ttySTM0,115200 root=/dev/mmcblk0p1 rw consoleblank=0 quiet
+[2.041214 0.012987] Retrieving file: /boot/stm32f769-disco-mb1166-reva09.dtb
+[2.138234 0.097019] Kernel image @ 0xc0008000 [ 0x000000 - 0x233798 ]
+[2.143231 0.004997] ## Flattened Device Tree blob at c0408000
+[2.146299 0.003068]    Booting using the fdt blob at 0xc0408000
+[2.150293 0.003994] Working FDT set to c0408000
+[2.172269 0.021977]    Loading Device Tree to c05f8000, end c05ff968 ... OK
+[2.177252 0.004983] Working FDT set to c05f8000
+[2.200247 0.022995] 
+[2.200266 0.000019] Starting kernel ...
+[2.202300 0.002034] 
+[2.368265 0.165964] C:0xC0008060-0xC023B7A0->0xC0363100-0xC0596840
+[2.427121 0.058856] Uncompressing Linux... done, booting the kernel.
+[8.931144 6.504023] Seeding 256 bits and crediting
+[8.933218 0.002073] Saving 256 bits of creditable seed for next boot
+[8.938125 0.004908] [    3.555605] EXT4-fs error (device mmcblk0p1): ext4_mb_generate_buddy:1217: group 1, block bitmap and bg descriptor inconsistent: 7469 vs 7470 free clusters
+[8.992125 0.053999] Starting network: ifconfig: socket: Function not implemented
+[9.091149 0.099024] FAIL
+[9.149147 0.057998] Starting User Button Monitor...
+[9.293179 0.144032] 
+[9.295164 0.001985] Welcome to Buildroot
+[9.297183 0.002019] buildroot login: 

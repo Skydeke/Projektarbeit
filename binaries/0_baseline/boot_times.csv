@@ -1,0 +1,11 @@
+boot_log_file,total_boot_time,uboot_time,uncompress_time,kernel_time
+boot_logs/boot_log_run_1.txt,11.580309,2.107226,4.617517,4.639579
+boot_logs/boot_log_run_2.txt,11.558161,2.100117,4.617518,4.624539
+boot_logs/boot_log_run_3.txt,11.620179,2.100106,4.618533,4.685572
+boot_logs/boot_log_run_4.txt,11.559393,2.107193,4.618520,4.618689
+boot_logs/boot_log_run_5.txt,11.634142,2.115031,4.617520,4.685596
+boot_logs/boot_log_run_6.txt,11.550197,2.108059,4.618535,4.608589
+boot_logs/boot_log_run_7.txt,11.582382,2.119256,4.617522,4.629612
+boot_logs/boot_log_run_8.txt,11.592348,2.120169,4.618524,4.638627
+boot_logs/boot_log_run_9.txt,11.585084,2.127035,4.617506,4.624552
+boot_logs/boot_log_run_10.txt,11.572149,2.119928,4.618526,4.618564

@@ -1,0 +1,60 @@
+[0.000000 0.000000] 6c00.dsi/vpg_horizontal': No such file or directory
+[0.000670 0.000670] hush: bad number
+[0.000814 0.000144] hush: bad number
+[0.000951 0.000137] hush: can't open '/sys/kernel/debug/40016c00.dsi/vpg': No such file or directory
+[0.002082 0.001131] hush: can't open '/sys/kernel/debug/40016c00.dsi/vpg_horizontal': No such file or directory
+[0.003307 0.001226] echo b > /proc/sysrq-trigger
+[0.004194 0.000886] [   17.143105] sysrq: Resetting
+[1.917919 1.913725] 
+[1.917942 0.000023] U-Boot 2025.01 (Apr 05 2025 - 17:21:45 +0200)
+[0.004899 0.004899] 
+[0.004941 0.000042] Model: STMicroelectronics STM32F769-DISCO board
+[0.008922 0.003981] DRAM:  16 MiB
+[0.331925 0.323003] stm32fx_rcc_clock rcc@40023800: set_rate not implemented for clock index 4
+[0.338991 0.007066] stm32fx_rcc_clock rcc@40023800: set_rate not implemented for clock index 4
+[0.345960 0.006970] Core:  43 devices, 24 uclasses, devicetree: separate
+[0.350018 0.004058] Flash: 2 MiB
+[0.351964 0.001945] MMC:   mmc@40011c00: 0
+[0.355978 0.004014] Loading Environment from nowhere... OK
+[0.369952 0.013974] stm32fx_rcc_clock rcc@40023800: set_rate not implemented for clock index 4
+[0.744006 0.374054] In:    serial@40011000
+[0.746060 0.002054] Out:   serial@40011000
+[0.748061 0.002002] Err:   serial@40011000
+[0.750975 0.002913] Net:   
+[0.785031 0.034057] Warning: ethernet@40028000 (eth0) using random MAC address - 32:a1:ea:60:41:2b
+[0.798991 0.013959] eth0: ethernet@40028000
+[0.801082 0.002091] Hit SPACE in 0 seconds to stop autoboot.
+[0.963034 0.161952] switch to partitions #0, OK
+[0.966073 0.003039] mmc0 is current device
+[1.027023 0.060951] Scanning mmc 0:1...
+[1.214074 0.187051] Found /boot/extlinux/extlinux.conf
+[1.225077 0.011003] Retrieving file: /boot/extlinux/extlinux.conf
+[1.300074 0.074997] 1:	stm32f769-disco-buildroot
+[1.309064 0.008990] Retrieving file: /boot/zImage
+[2.028176 0.719112] append: console=ttySTM0,115200 root=/dev/mmcblk0p1 rw consoleblank=0 quiet
+[2.042174 0.013998] Retrieving file: /boot/stm32f769-disco-mb1166-reva09.dtb
+[2.139196 0.097023] Kernel image @ 0xc0008000 [ 0x000000 - 0x233798 ]
+[2.143236 0.004040] ## Flattened Device Tree blob at c0408000
+[2.147188 0.003953]    Booting using the fdt blob at 0xc0408000
+[2.151035 0.003847] Working FDT set to c0408000
+[2.172158 0.021123]    Loading Device Tree to c05f8000, end c05ff968 ... OK
+[2.177287 0.005129] Working FDT set to c05f8000
+[2.201183 0.023897] 
+[2.201206 0.000023] Starting kernel ...
+[2.203193 0.001987] 
+[2.368203 0.165009] C:0xC0008060-0xC023B7A0->0xC0363100-0xC0596840
+[2.427207 0.059005] Uncompressing Linux... done, booting the kernel.
+[8.931072 6.503865] Seeding 256 bits and crediting
+[8.933154 0.002082] Saving 256 bits of creditable seed for next boot
+[8.938117 0.004962] [    3.555233] EXT4-fs error (device mmcblk0p1): ext4_mb_generate_buddy:1217: group 1, block bitmap and bg descriptor inconsistent: 7469 vs 7470 free clusters
+[8.992058 0.053942] Starting network: ifconfig: socket: Function not implemented
+[9.091095 0.099036] FAIL
+[9.150085 0.058990] Starting User Button Monitor...
+[9.293115 0.143030] 
+[9.295095 0.001981] Welcome to Buildroot
+[9.297165 0.002070] buildroot login: vpg activated.
+[11.777437 2.480272] [    6.393957] nommu: Allocation of length 385024 from process 82 (cat) failed
+[11.785418 0.007981] [    6.402750] binfmt_flat: Unable to allocate RAM for process text/data, errno -12
+[11.803434 0.018017] hush: bad number
+[14.736863 2.933429] vpg activated.
+[15.951994 1.215131] vpg_horizontal set to 1.

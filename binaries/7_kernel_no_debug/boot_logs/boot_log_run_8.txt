@@ -1,0 +1,46 @@
+[0.000000 0.000000] 
+[0.000130 0.000130] 
+[0.000153 0.000022] U-Boot 2025.01 (Apr 05 2025 - 17:21:45 +0200)
+[0.003883 0.003883] 
+[0.004789 0.000907] Model: STMicroelectronics STM32F769-DISCO board
+[0.008856 0.004067] DRAM:  16 MiB
+[0.331831 0.322975] stm32fx_rcc_clock rcc@40023800: set_rate not implemented for clock index 4
+[0.338873 0.007041] stm32fx_rcc_clock rcc@40023800: set_rate not implemented for clock index 4
+[0.345827 0.006954] Core:  43 devices, 24 uclasses, devicetree: separate
+[0.349914 0.004087] Flash: 2 MiB
+[0.351839 0.001924] MMC:   mmc@40011c00: 0
+[0.355880 0.004041] Loading Environment from nowhere... OK
+[0.369845 0.013965] stm32fx_rcc_clock rcc@40023800: set_rate not implemented for clock index 4
+[0.743881 0.374036] In:    serial@40011000
+[0.745931 0.002050] Out:   serial@40011000
+[0.747936 0.002005] Err:   serial@40011000
+[0.750872 0.002936] Net:   
+[0.784933 0.034061] Warning: ethernet@40028000 (eth0) using random MAC address - e6:50:92:0a:42:d1
+[0.798899 0.013966] eth0: ethernet@40028000
+[0.800971 0.002072] Hit SPACE in 0 seconds to stop autoboot.
+[0.962906 0.161936] switch to partitions #0, OK
+[0.965790 0.002884] mmc0 is current device
+[1.026914 0.061124] Scanning mmc 0:1...
+[1.213940 0.187026] Found /boot/extlinux/extlinux.conf
+[1.224940 0.011000] Retrieving file: /boot/extlinux/extlinux.conf
+[1.299947 0.075007] 1:	stm32f769-disco-buildroot
+[1.308957 0.009011] Retrieving file: /boot/zImage
+[2.000037 0.691080] append: console=ttySTM0,115200 root=/dev/mmcblk0p1 rw consoleblank=0 quiet
+[2.013028 0.012991] Retrieving file: /boot/stm32f769-disco-mb1166-reva09.dtb
+[2.110043 0.097015] Kernel image @ 0xc0008000 [ 0x000000 - 0x2157a8 ]
+[2.115035 0.004992] ## Flattened Device Tree blob at c0408000
+[2.119464 0.004429]    Booting using the fdt blob at 0xc0408000
+[2.122104 0.002640] Working FDT set to c0408000
+[2.144058 0.021953]    Loading Device Tree to c05f8000, end c05ff968 ... OK
+[2.149067 0.005009] Working FDT set to c05f8000
+[2.172068 0.023001] 
+[2.172091 0.000024] Starting kernel ...
+[2.174112 0.002020] 
+[8.459809 6.285698] Seeding 256 bits and crediting
+[8.461861 0.002052] Saving 256 bits of creditable seed for next boot
+[8.497768 0.035907] Starting network: ifconfig: socket: Function not implemented
+[8.585866 0.088098] FAIL
+[8.637781 0.051915] Starting User Button Monitor...
+[8.786820 0.149039] 
+[8.788798 0.001979] Welcome to Buildroot
+[8.790687 0.001888] buildroot login: 

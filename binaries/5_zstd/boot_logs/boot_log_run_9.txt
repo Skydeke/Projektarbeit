@@ -1,0 +1,162 @@
+[0.000000 0.000000]  20.622403] sysrq: Resetting
+[1.917159 1.917159] 
+[1.917222 0.000063] 
+[1.917240 0.000018] U-Boot 2025.01 (Apr 05 2025 - 17:21:45 +0200)
+[0.004003 0.004003] 
+[0.004020 0.000017] Model: STMicroelectronics STM32F769-DISCO board
+[0.008757 0.004737] DRAM:  16 MiB
+[0.331925 0.323168] stm32fx_rcc_clock rcc@40023800: set_rate not implemented for clock index 4
+[0.338978 0.007052] stm32fx_rcc_clock rcc@40023800: set_rate not implemented for clock index 4
+[0.345909 0.006931] Core:  43 devices, 24 uclasses, devicetree: separate
+[0.349990 0.004081] Flash: 2 MiB
+[0.351904 0.001914] MMC:   mmc@40011c00: 0
+[0.355947 0.004043] Loading Environment from nowhere... OK
+[0.369921 0.013974] stm32fx_rcc_clock rcc@40023800: set_rate not implemented for clock index 4
+[0.743984 0.374063] In:    serial@40011000
+[0.747395 0.003411] Out:   serial@40011000
+[0.748019 0.000624] Err:   serial@40011000
+[0.750963 0.002944] Net:   
+[0.785024 0.034061] Warning: ethernet@40028000 (eth0) using random MAC address - 42:55:53:49:a7:66
+[0.798993 0.013969] eth0: ethernet@40028000
+[0.801091 0.002098] Hit SPACE in 0 seconds to stop autoboot.
+[0.962994 0.161903] switch to partitions #0, OK
+[0.966038 0.003043] mmc0 is current device
+[1.027002 0.060964] Scanning mmc 0:1...
+[1.214042 0.187041] Found /boot/extlinux/extlinux.conf
+[1.224894 0.010852] Retrieving file: /boot/extlinux/extlinux.conf
+[1.300039 0.075144] 1:	stm32f769-disco-buildroot
+[1.309033 0.008994] Retrieving file: /boot/zImage
+[1.938108 0.629076] append: console=ttySTM0,115200 root=/dev/mmcblk0p1 rw earlyprintk consoleblank=0 ignore_loglevel
+[1.954107 0.015999] Retrieving file: /boot/stm32f769-disco-mb1166-reva09.dtb
+[2.050101 0.095994] Kernel image @ 0xc0008000 [ 0x000000 - 0x1e8548 ]
+[2.055137 0.005036] ## Flattened Device Tree blob at c0408000
+[2.059113 0.003976]    Booting using the fdt blob at 0xc0408000
+[2.062212 0.003099] Working FDT set to c0408000
+[2.084117 0.021905]    Loading Device Tree to c05f8000, end c05ff968 ... OK
+[2.089049 0.004932] Working FDT set to c05f8000
+[2.113117 0.024068] 
+[2.113136 0.000019] Starting kernel ...
+[2.115094 0.001958] 
+[2.272136 0.157042] C:0xC0008060-0xC01F0560->0xC0363100-0xC054B600
+[2.328130 0.055994] Uncompressing Linux... done, booting the kernel.
+[6.946659 4.618529] [    0.000000] Booting Linux on physical CPU 0x0
+[6.950716 0.004057] [    0.000000] Linux version 6.10.0 (david@david-linux) (arm-buildroot-uclinux-uclibcgnueabi-gcc.br_real (Buildroot 2024.08.3-dirty) 13.3.0, GNU ld (GNU Binutils) 2.41) #1 PREEMPT Sun Apr 27 14:58:05 CEST 2025
+[6.968715 0.017998] [    0.000000] CPU: ARMv7-M [411fc270] revision 0 (ARMv7M), cr=00000000
+[6.975655 0.006940] [    0.000000] CPU: PIPT / VIPT nonaliasing data cache, PIPT instruction cache
+[6.982653 0.006998] [    0.000000] OF: fdt: Machine model: STMicroelectronics STM32F769-DISCO board
+[6.989663 0.007010] [    0.000000] printk: legacy bootconsole [earlycon0] enabled
+[6.994705 0.005042] [    0.000000] printk: debug: ignoring loglevel setting.
+[7.015661 0.020956] [    0.000000] Reserved memory: created DMA memory pool at 0xc0f00000, size 1 MiB
+[7.022712 0.007051] [    0.000000] OF: reserved mem: initialized node linux,dma, compatible id shared-dma-pool
+[7.031643 0.008931] [    0.000000] OF: reserved mem: 0xc0f00000..0xc0ffffff (1024 KiB) nomap non-reusable linux,dma
+[7.039691 0.008049] [    0.000000] Using ARMv7 PMSA Compliant MPU. Region independence: No, Used 3 of 8 regions
+[7.047706 0.008015] [    0.000000] Zone ranges:
+[7.050679 0.002973] [    0.000000]   Normal   [mem 0x00000000c0000000-0x00000000c0ffffff]
+[7.056696 0.006017] [    0.000000] Movable zone start for each node
+[7.060717 0.004021] [    0.000000] Early memory node ranges
+[7.064687 0.003970] [    0.000000]   node   0: [mem 0x00000000c0000000-0x00000000c0efffff]
+[7.070725 0.006038] [    0.000000]   node   0: [mem 0x00000000c0f00000-0x00000000c0ffffff]
+[7.077658 0.006933] [    0.000000] Initmem setup node 0 [mem 0x00000000c0000000-0x00000000c0ffffff]
+[7.112674 0.035016] [    0.000000] pcpu-alloc: s0 r0 d32768 u32768 alloc=1*32768
+[7.117695 0.005021] [    0.000000] pcpu-alloc: [0] 0 
+[7.120711 0.003016] [    0.000000] Kernel command line: console=ttySTM0,115200 root=/dev/mmcblk0p1 rw earlyprintk consoleblank=0 ignore_loglevel
+[7.132653 0.011943] [    0.000000] Dentry cache hash table entries: 2048 (order: 1, 8192 bytes, linear)
+[7.140655 0.008002] [    0.000000] Inode-cache hash table entries: 1024 (order: 0, 4096 bytes, linear)
+[7.147688 0.007033] [    0.000000] Built 1 zonelists, mobility grouping on.  Total pages: 4096
+[7.154670 0.006982] [    0.000000] mem auto-init: stack:all(zero), heap alloc:off, heap free:off
+[7.163652 0.008982] [    0.000000] Memory: 11500K/16384K available (1996K kernel code, 330K rwdata, 888K rodata, 88K init, 154K bss, 4884K reserved, 0K cma-reserved)
+[7.177510 0.013858] [    0.000000] SLUB: HWalign=32, Order=0-3, MinObjects=0, CPUs=1, Nodes=1
+[7.184661 0.007150] [    0.000000] rcu: Preemptible hierarchical RCU implementation.
+[7.190704 0.006043] [    0.000000] rcu: 	RCU event tracing is enabled.
+[7.195660 0.004956] [    0.000000] rcu: RCU calculated value of scheduler-enlistment delay is 10 jiffies.
+[7.202728 0.007069] [    0.000000] NR_IRQS: 16, nr_irqs: 16, preallocated irqs: 16
+[7.210657 0.007929] [    0.000000] /soc/interrupt-controller@40013c00: bank0
+[7.218660 0.008002] [    0.000000] rcu: srcu_init: Setting srcu_struct sizes based on contention.
+[7.241523 0.022863] [    0.000000] clocksource: arm_system_timer: mask: 0xffffff max_cycles: 0xffffff, max_idle_ns: 298634427 ns
+[7.251681 0.010158] [    0.000000] ARM System timer initialized as clocksource
+[7.257525 0.005844] [    0.000009] sched_clock: 32 bits at 100MHz, resolution 10ns, wraps every 21474836475ns
+[7.265669 0.008144] [    0.008060] timers@40000c00: STM32 sched_clock registered
+[7.270702 0.005032] [    0.013537] Switching to timer-based delay loop, resolution 10ns
+[7.276712 0.006010] [    0.019606] timers@40000c00: STM32 delay timer registered
+[7.282670 0.005958] [    0.025080] clocksource: timers@40000c00: mask: 0xffffffff max_cycles: 0xffffffff, max_idle_ns: 19112604467 ns
+[7.292664 0.009994] [    0.035213] /soc/timers@40000c00: STM32 clockevent driver initialized (32 bits)
+[7.300666 0.008002] [    0.043873] Console: colour dummy device 80x30
+[7.305548 0.004882] [    0.048657] Calibrating delay loop (skipped), value calculated using timer frequency.. 200.00 BogoMIPS (lpj=1000000)
+[7.316689 0.011141] [    0.059428] pid_max: default: 32768 minimum: 301
+[7.321524 0.004835] [    0.064556] Mount-cache hash table entries: 1024 (order: 0, 4096 bytes, linear)
+[7.329676 0.008152] [    0.072137] Mountpoint-cache hash table entries: 1024 (order: 0, 4096 bytes, linear)
+[7.346687 0.017011] [    0.089125] rcu: Hierarchical SRCU implementation.
+[7.351680 0.004993] [    0.094155] rcu: 	Max phase no-delay instances is 1000.
+[7.360700 0.009019] [    0.103622] devtmpfs: initialized
+[7.399700 0.039000] [    0.142937] DMA: default coherent area is set
+[7.404732 0.005032] [    0.147540] clocksource: jiffies: mask: 0xffffffff max_cycles: 0xffffffff, max_idle_ns: 19112604462750000 ns
+[7.414721 0.009989] [    0.157618] futex hash table entries: 256 (order: -1, 3072 bytes, linear)
+[7.421717 0.006996] [    0.164824] pinctrl core: initialized pinctrl subsystem
+[7.473711 0.051994] [    0.216488] platform 40016800.display-controller: Fixed dependency cycle(s) with /soc/dsi@40016c00
+[7.487691 0.013981] [    0.230528] platform 40016800.display-controller: Fixed dependency cycle(s) with /soc/dsi@40016c00
+[7.497545 0.009854] [    0.240354] platform 40016c00.dsi: Fixed dependency cycle(s) with /soc/dsi@40016c00/panel@0
+[7.505762 0.008217] [    0.248911] platform 40016c00.dsi: Fixed dependency cycle(s) with /soc/display-controller@40016800
+[7.523698 0.017936] [    0.266057] stm32f769-pinctrl soc:pinctrl@40020000: GPIOA bank added
+[7.531693 0.007995] [    0.274865] stm32f769-pinctrl soc:pinctrl@40020000: GPIOB bank added
+[7.540694 0.009001] [    0.283845] stm32f769-pinctrl soc:pinctrl@40020000: GPIOC bank added
+[7.549694 0.009000] [    0.292801] stm32f769-pinctrl soc:pinctrl@40020000: GPIOD bank added
+[7.558698 0.009004] [    0.301669] stm32f769-pinctrl soc:pinctrl@40020000: GPIOE bank added
+[7.567698 0.009000] [    0.310693] stm32f769-pinctrl soc:pinctrl@40020000: GPIOF bank added
+[7.576696 0.008999] [    0.320035] stm32f769-pinctrl soc:pinctrl@40020000: GPIOG bank added
+[7.586704 0.010008] [    0.329308] stm32f769-pinctrl soc:pinctrl@40020000: GPIOH bank added
+[7.596704 0.010000] [    0.339248] stm32f769-pinctrl soc:pinctrl@40020000: GPIOI bank added
+[7.606708 0.010003] [    0.349318] stm32f769-pinctrl soc:pinctrl@40020000: GPIOJ bank added
+[7.615705 0.008998] [    0.358126] stm32f769-pinctrl soc:pinctrl@40020000: GPIOK bank added
+[7.622710 0.007005] [    0.365069] stm32f769-pinctrl soc:pinctrl@40020000: Pinctrl STM32 initialized
+[7.650715 0.028005] [    0.393708] clocksource: Switched to clocksource timers@40000c00
+[7.725732 0.075017] [    0.468048] workingset: timestamp_bits=30 max_order=12 bucket_order=0
+[7.734718 0.008986] [    0.477130] io scheduler mq-deadline registered
+[7.738771 0.004052] [    0.481800] io scheduler kyber registered
+[7.743719 0.004948] [    0.486187] io scheduler bfq registered
+[7.755719 0.012000] [    0.498858] STM32 USART driver initialized
+[7.762719 0.007000] [    0.505384] stm32-usart 40011000.serial: interrupt mode for rx (no dma)
+[7.769576 0.006857] [    0.512132] stm32-usart 40011000.serial: interrupt mode for tx (no dma)
+[7.777722 0.008146] [    0.520594] 40011000.serial: ttySTM0 at MMIO 0x40011000 (irq = 31, base_baud = 6250000) is a stm32-usart
+[7.787720 0.009998] [    0.530716] printk: legacy console [ttySTM0] enabled
+[7.792783 0.005064] [    0.530716] printk: legacy console [ttySTM0] enabled
+[7.797790 0.005007] [    0.540838] printk: legacy bootconsole [earlycon0] disabled
+[7.803759 0.005969] [    0.540838] printk: legacy bootconsole [earlycon0] disabled
+[7.813727 0.009968] [    0.556665] stm32-display-dsi 40016c00.dsi: supply phy-dsi not found, using dummy regulator
+[7.824721 0.010995] [    0.567994] stm32-display-dsi 40016c00.dsi: Fixed dependency cycle(s) with /soc/dsi@40016c00/panel@0
+[7.835728 0.011007] [    0.578152] mipi-dsi 40016c00.dsi.0: Fixed dependency cycle(s) with /soc/dsi@40016c00
+[7.856736 0.021008] [    0.599255] i2c_dev: i2c /dev entries driver
+[7.910744 0.054008] [    0.653116] stm32f7-i2c 40005400.i2c: STM32F7 I2C-0 bus adapter
+[7.925741 0.014997] [    0.668395] mmci-pl18x 40011c00.mmc: Got CD GPIO
+[7.942738 0.016997] [    0.685886] mmci-pl18x 40011c00.mmc: mmc0: PL180 manf 80 rev8 at 0x40011c00 irq 34,0 (pio)
+[8.028760 0.086023] [    0.771450] mmc0: host does not support reading read-only switch, assuming write-enable
+[8.036790 0.008029] [    0.780018] mmc0: new SDHC card at address 0001
+[8.045754 0.008964] [    0.788479] mmcblk0: mmc0:0001 asdfg 7.50 GiB
+[8.070772 0.025018] [    0.814006]  mmcblk0: p1
+[8.106780 0.036008] [    0.849325] [drm] Initialized stm 1.0.0 20170330 for 40016800.display-controller on minor 0
+[8.610834 0.504054] [    1.078128] panel-novatek-nt35510 40016c00.dsi.0: MTP ID manufacturer: 00 version: 80 driver: 00
+[8.619904 0.009069] [    1.330352] Console: switching to colour frame buffer device 60x50
+[8.626815 0.006911] [    1.369354] stm32-display 40016800.display-controller: [drm] fb0: stmdrmfb frame buffer device
+[8.639823 0.013009] [    1.382301] clk: Disabling unused clocks
+[8.648825 0.009001] [    1.391155] EXT4-fs (mmcblk0p1): mounting ext2 file system using the ext4 subsystem
+[8.664846 0.016022] [    1.407464] EXT4-fs (mmcblk0p1): warning: mounting unchecked fs, running e2fsck is recommended
+[8.677825 0.012979] [    1.420272] EXT4-fs (mmcblk0p1): mounted filesystem 53487ced-db52-4327-92cf-5a0e657fff35 r/w without journal. Quota mode: disabled.
+[8.689837 0.012012] [    1.432843] VFS: Mounted root (ext2 filesystem) on device 179:1.
+[8.697678 0.007841] [    1.440529] devtmpfs: mounted
+[8.701826 0.004148] [    1.444366] Freeing unused kernel image (initmem) memory: 88K
+[8.707827 0.006001] [    1.450155] This architecture does not have kernel memory protection.
+[8.713736 0.005909] [    1.456862] Run /sbin/init as init process
+[8.717904 0.004168] [    1.460982]   with arguments:
+[8.721827 0.003923] [    1.464254]     /sbin/init
+[8.723895 0.002068] [    1.466987]   with environment:
+[8.726913 0.003018] [    1.470082]     HOME=/
+[8.729717 0.002804] [    1.472471]     TERM=linux
+[11.071115 2.341399] [    3.813907] random: crng init done
+[11.143117 0.072002] [    3.885622] EXT4-fs (mmcblk0p1): re-mounted 53487ced-db52-4327-92cf-5a0e657fff35 r/w. Quota mode: disabled.
+[11.298136 0.155019] Seeding 256 bits and crediting
+[11.300222 0.002086] Saving 256 bits of creditable seed for next boot
+[11.339138 0.038916] Starting network: ifconfig: socket: Function not implemented
+[11.438170 0.099032] FAIL
+[11.497152 0.058982] Starting User Button Monitor...
+[11.642036 0.144884] 
+[11.644157 0.002121] Welcome to Buildroot
+[11.646268 0.002111] buildroot login: 
