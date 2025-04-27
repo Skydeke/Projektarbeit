@@ -43,7 +43,7 @@ while true; do
   # Start measuring boot time
   echo "[*] Measuring boot time from serial log..."
   # Use grabserial to capture output with pattern matching for boot sequence
-  grabserial -d "$SERIAL_PORT" -b $BAUD -t -m "U-Boot 2025.01" -e 25 > "$BOOT_LOG_FILE" 2>/dev/null
+  grabserial -d "$SERIAL_PORT" -b $BAUD -t -m "U-Boot 2025.01" -e 120 > "$BOOT_LOG_FILE" 2>/dev/null
 
   # Check if the boot log is empty and delete if so
   if [ ! -s "$BOOT_LOG_FILE" ]; then
