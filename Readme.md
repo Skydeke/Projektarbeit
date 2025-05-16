@@ -5,6 +5,8 @@ Dieses Projekt zielt darauf ab, die Bootzeit eines Embedded Linux-Systems auf de
 *   **`buildroot_customisations`**: Dieses Verzeichnis enthält alle Anpassungen für Buildroot.
     **Ziel ist die Erstellung eines minimalen und optimierten Linux-Systems mit Buildroot**.
 *   **`Documentation`**: In diesem Verzeichnis befinden sich die LaTeX-Dokumente, die die Projektarbeit und ihre Ergebnisse beschreiben.
+*   **`binaries`**: In diesem Verzeichnis befinden sich die SD-Karten images sowie die kompellierten Bootloader. Auch befinden sich hier die Mess-Ergebnisse.
+*   **`boot-time-slides.pdf`**: Die Vorschläge von Bootlin, auf deren Vorschläge, diese Projektarbeit baut.
 
 ## Git Repository
 Die Projektdateien sind unter folgender URL verfügbar: `git@github.com:Skydeke/Projektarbeit.git`

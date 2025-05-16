@@ -1,7 +1,9 @@
 \selectlanguage{ngerman}
 
 \section{Grundlagen der Bootzeitoptimierung}
-Um die Bootzeit gezielt zu optimieren, muss sie präzise gemessen werden. Wichtige Referenzpunkte sind das Erscheinen eines Splash-Screens, der Start eines Dienstes oder die vollständige Betriebsbereitschaft des Systems. Außerdem wird besprochen, welche Optimierungen in welcher Reihenfolge sinnvoll sind.
+Um die Bootzeit gezielt zu optimieren, muss sie präzise gemessen werden. Wichtige Referenzpunkte sind der
+Start des Bootloaders, Endzeit des Bootloaders (wenn der Kernel geladen wird), Dekompressionszeit des Kernels
+Startzeit der Services, initialisierung der Hardware und die Userscript-Ausführungszeit.
 
 \subsection{Messmethoden}
 Bootlin empfiehlt die folgenden Messmethoden:
@@ -11,10 +13,21 @@ Bootlin empfiehlt die folgenden Messmethoden:
 	\item \textbf{Serielle Konsole:} Ermöglicht das Aufzeichnen von Boot-Zeitstempeln mit \textit{grabserial}.
 \end{itemize}
 
-Wir verwenden \textit{grabserial}, da es einfach einzurichten ist und ohne zusätzliche Hardware auskommt. Es ermöglicht uns eine automatisierte und reproduzierbare Erfassung der Bootzeiten.
+Wir verwenden \textit{grabserial}, da es einfach einzurichten ist und ohne zusätzliche Hardware auskommt. Es
+ermöglicht uns eine automatisierte und reproduzierbare Erfassung der Bootzeiten. Da die Messungsergebnisse nur
+aussagekräftig sind wenn sie zwischen den den Messungen eine geringe abweichung haben, werden alle
+Konfigurationen 10x gemessen, und nur als Verbesserung angenommen wenn sie wenig voneinander abweichen.
 
 \subsection{Bootphasen}
-Ein typischer Bootvorgang beginnt mit dem ROM-Code, der das Bootstrap-Image in den SRAM lädt. Anschließend übernimmt der X-Loader bzw. U-Boot SPL, initialisiert den DRAM und lädt den eigentlichen Bootloader. Der U-Boot startet dann das Kernel-Image und bietet eine Shell zur manuellen Konfiguration. Sobald der Linux-Kernel die Kontrolle übernimmt, werden die Hardware initialisiert und erste Systemdienste gestartet. Schließlich beginnt der Userspace, in dem Startup-Skripte ausgeführt und alle notwendigen Prozesse für den Betriebssystembetrieb gestartet werden.
+Ein typischer Bootvorgang beginnt mit dem ROM-Code, der das Bootstrap-Image in den SRAM lädt. Anschließend
+übernimmt der X-Loader bzw. U-Boot SPL, initialisiert den DRAM und lädt den eigentlichen Bootloader. Der
+U-Boot läd das Kernel-Image, welches entpackt wird und startet dann das Kernel-Image. Sobald der Linux-Kernel
+die Kontrolle übernimmt, werden die Hardware initialisiert und erste Systemdienste gestartet. Schließlich
+beginnt der Userspace, in dem Startup-Skripte ausgeführt und alle notwendigen Prozesse für den
+Betriebssystembetrieb gestartet werden.
 
 \subsection{Optimierungsreihenfolge}
-Es wird empfohlen, mit den Startup-Skripten zu beginnen und unnötige Dienste zu deaktivieren. Danach sollte der Kernel optimiert werden, indem nur benötigte Module geladen werden. Abschließend lassen sich Verzögerungen im Bootloader reduzieren und die Ladezeiten optimieren.
+Es wird empfohlen, mit den Startup-Skripten zu beginnen und unnötige Dienste zu deaktivieren. Danach sollte
+der Kernel optimiert werden, indem nur benötigte Module geladen werden. Auch sollten die verschiedenen
+Kernel-Kompressionsalgorithmen gemenchmarkt werden. Abschließend lassen sich Verzögerungen im Bootloader
+reduzieren und die Ladezeiten optimieren.

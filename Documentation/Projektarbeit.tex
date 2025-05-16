@@ -21,6 +21,7 @@
 \usepackage{ifthen}
 \usepackage{scrlayer-scrpage}
 \usepackage{rwudefs}
+\usepackage{pgfplots}
 
 \makeatletter
 \linespread{1.25} % https://tex.stackexchange.com/questions/65849/confusion-onehalfspacing-vs-spacing-vs-word-vs-the-world
@@ -89,9 +90,6 @@
 }
 \makeatother
 
-
-
-
 \begin{document}
 \title{\Huge Projektarbeit: \\ Boot-Time Analysis for Linux}
 \date{\today}
@@ -118,5 +116,7 @@
 \input{chapters/BootloaderOptimierungen.tex}
 \input{chapters/Zusammenfassung.tex}
 \input{chapters/Referenzen.tex}
+
 \printbibliography
+
 \end{document}
